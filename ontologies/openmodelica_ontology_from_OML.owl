@@ -1,0 +1,504 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://openmodelica.org/openmodelica/"
+     xml:base="http://openmodelica.org/openmodelica/"
+     xmlns:m="http://openmodelica.org/openmodelica/"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+    <owl:Ontology rdf:about="http://openmodelica.org/openmodelica/"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Datatypes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://openmodelica.org/openmodelica/ClassPrefix -->
+
+    <rdfs:Datatype rdf:about="http://openmodelica.org/openmodelica/ClassPrefix">
+        <owl:equivalentClass>
+            <rdfs:Datatype>
+                <owl:oneOf>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                        <rdf:first>encapsulated</rdf:first>
+                        <rdf:rest>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                <rdf:first>input</rdf:first>
+                                <rdf:rest>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                        <rdf:first>output</rdf:first>
+                                        <rdf:rest>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                                <rdf:first>partial</rdf:first>
+                                                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                            </rdf:Description>
+                                        </rdf:rest>
+                                    </rdf:Description>
+                                </rdf:rest>
+                            </rdf:Description>
+                        </rdf:rest>
+                    </rdf:Description>
+                </owl:oneOf>
+            </rdfs:Datatype>
+        </owl:equivalentClass>
+    </rdfs:Datatype>
+    
+
+
+    <!-- http://openmodelica.org/openmodelica/Prefix -->
+
+    <rdfs:Datatype rdf:about="http://openmodelica.org/openmodelica/Prefix">
+        <owl:equivalentClass>
+            <rdfs:Datatype>
+                <owl:oneOf>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                        <rdf:first>constant</rdf:first>
+                        <rdf:rest>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                <rdf:first>final</rdf:first>
+                                <rdf:rest>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                        <rdf:first>flow</rdf:first>
+                                        <rdf:rest>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                                <rdf:first>inner</rdf:first>
+                                                <rdf:rest>
+                                                    <rdf:Description>
+                                                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                                        <rdf:first>innerouter</rdf:first>
+                                                        <rdf:rest>
+                                                            <rdf:Description>
+                                                                <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                                                <rdf:first>input</rdf:first>
+                                                                <rdf:rest>
+                                                                    <rdf:Description>
+                                                                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                                                        <rdf:first>outer</rdf:first>
+                                                                        <rdf:rest>
+                                                                            <rdf:Description>
+                                                                                <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                                                                <rdf:first>output</rdf:first>
+                                                                                <rdf:rest>
+                                                                                    <rdf:Description>
+                                                                                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                                                                        <rdf:first>parameter</rdf:first>
+                                                                                        <rdf:rest>
+                                                                                            <rdf:Description>
+                                                                                                <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                                                                                <rdf:first>replaceable</rdf:first>
+                                                                                                <rdf:rest>
+                                                                                                    <rdf:Description>
+                                                                                                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                                                                                        <rdf:first>stream</rdf:first>
+                                                                                                        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                                                                                    </rdf:Description>
+                                                                                                </rdf:rest>
+                                                                                            </rdf:Description>
+                                                                                        </rdf:rest>
+                                                                                    </rdf:Description>
+                                                                                </rdf:rest>
+                                                                            </rdf:Description>
+                                                                        </rdf:rest>
+                                                                    </rdf:Description>
+                                                                </rdf:rest>
+                                                            </rdf:Description>
+                                                        </rdf:rest>
+                                                    </rdf:Description>
+                                                </rdf:rest>
+                                            </rdf:Description>
+                                        </rdf:rest>
+                                    </rdf:Description>
+                                </rdf:rest>
+                            </rdf:Description>
+                        </rdf:rest>
+                    </rdf:Description>
+                </owl:oneOf>
+            </rdfs:Datatype>
+        </owl:equivalentClass>
+    </rdfs:Datatype>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://openmodelica.org/openmodelica/contains -->
+
+    <owl:ObjectProperty rdf:about="http://openmodelica.org/openmodelica/contains">
+        <owl:inverseOf rdf:resource="http://openmodelica.org/openmodelica/isContainedBy"/>
+        <rdfs:domain rdf:resource="http://openmodelica.org/openmodelica/Class"/>
+        <rdfs:range>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://openmodelica.org/openmodelica/Class"/>
+                    <rdf:Description rdf:about="http://openmodelica.org/openmodelica/Component"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:range>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://openmodelica.org/openmodelica/extendsClass -->
+
+    <owl:ObjectProperty rdf:about="http://openmodelica.org/openmodelica/extendsClass">
+        <owl:inverseOf rdf:resource="http://openmodelica.org/openmodelica/instanceOfClass"/>
+        <rdfs:domain rdf:resource="http://openmodelica.org/openmodelica/Class"/>
+        <rdfs:range rdf:resource="http://openmodelica.org/openmodelica/Class"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://openmodelica.org/openmodelica/hasType -->
+
+    <owl:ObjectProperty rdf:about="http://openmodelica.org/openmodelica/hasType">
+        <owl:inverseOf rdf:resource="http://openmodelica.org/openmodelica/instanceOf"/>
+        <rdfs:domain rdf:resource="http://openmodelica.org/openmodelica/Component"/>
+        <rdfs:range rdf:resource="http://openmodelica.org/openmodelica/Type"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://openmodelica.org/openmodelica/instanceOf -->
+
+    <owl:ObjectProperty rdf:about="http://openmodelica.org/openmodelica/instanceOf"/>
+    
+
+
+    <!-- http://openmodelica.org/openmodelica/instanceOfClass -->
+
+    <owl:ObjectProperty rdf:about="http://openmodelica.org/openmodelica/instanceOfClass"/>
+    
+
+
+    <!-- http://openmodelica.org/openmodelica/isContainedBy -->
+
+    <owl:ObjectProperty rdf:about="http://openmodelica.org/openmodelica/isContainedBy"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://openmodelica.org/openmodelica/hasClassPrefix -->
+
+    <owl:DatatypeProperty rdf:about="http://openmodelica.org/openmodelica/hasClassPrefix">
+        <rdfs:domain rdf:resource="http://openmodelica.org/openmodelica/Class"/>
+        <rdfs:range rdf:resource="http://openmodelica.org/openmodelica/ClassPrefix"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://openmodelica.org/openmodelica/hasComment -->
+
+    <owl:DatatypeProperty rdf:about="http://openmodelica.org/openmodelica/hasComment">
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://openmodelica.org/openmodelica/Class"/>
+                    <rdf:Description rdf:about="http://openmodelica.org/openmodelica/Component"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://openmodelica.org/openmodelica/hasDisplayUnit -->
+
+    <owl:DatatypeProperty rdf:about="http://openmodelica.org/openmodelica/hasDisplayUnit">
+        <rdfs:domain rdf:resource="http://openmodelica.org/openmodelica/Real"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://openmodelica.org/openmodelica/hasFixed -->
+
+    <owl:DatatypeProperty rdf:about="http://openmodelica.org/openmodelica/hasFixed">
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://openmodelica.org/openmodelica/hasInitialValue -->
+
+    <owl:DatatypeProperty rdf:about="http://openmodelica.org/openmodelica/hasInitialValue">
+        <rdfs:domain rdf:resource="http://openmodelica.org/openmodelica/Component"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://openmodelica.org/openmodelica/hasName -->
+
+    <owl:DatatypeProperty rdf:about="http://openmodelica.org/openmodelica/hasName">
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://openmodelica.org/openmodelica/Class"/>
+                    <rdf:Description rdf:about="http://openmodelica.org/openmodelica/Component"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://openmodelica.org/openmodelica/hasPrefix -->
+
+    <owl:DatatypeProperty rdf:about="http://openmodelica.org/openmodelica/hasPrefix">
+        <rdfs:domain rdf:resource="http://openmodelica.org/openmodelica/Component"/>
+        <rdfs:range rdf:resource="http://openmodelica.org/openmodelica/Prefix"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://openmodelica.org/openmodelica/hasQuantity -->
+
+    <owl:DatatypeProperty rdf:about="http://openmodelica.org/openmodelica/hasQuantity">
+        <rdfs:domain rdf:resource="http://openmodelica.org/openmodelica/PrimitiveType"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://openmodelica.org/openmodelica/hasStartDecimal -->
+
+    <owl:DatatypeProperty rdf:about="http://openmodelica.org/openmodelica/hasStartDecimal">
+        <rdfs:domain rdf:resource="http://openmodelica.org/openmodelica/Real"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://openmodelica.org/openmodelica/hasUnit -->
+
+    <owl:DatatypeProperty rdf:about="http://openmodelica.org/openmodelica/hasUnit">
+        <rdfs:domain rdf:resource="http://openmodelica.org/openmodelica/Real"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://openmodelica.org/openmodelica/hasValue -->
+
+    <owl:DatatypeProperty rdf:about="http://openmodelica.org/openmodelica/hasValue">
+        <rdfs:domain rdf:resource="http://openmodelica.org/openmodelica/Component"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://openmodelica.org/openmodelica/Block -->
+
+    <owl:Class rdf:about="http://openmodelica.org/openmodelica/Block">
+        <rdfs:subClassOf rdf:resource="http://openmodelica.org/openmodelica/Class"/>
+    </owl:Class>
+    
+
+
+    <!-- http://openmodelica.org/openmodelica/Boolean -->
+
+    <owl:Class rdf:about="http://openmodelica.org/openmodelica/Boolean">
+        <rdfs:subClassOf rdf:resource="http://openmodelica.org/openmodelica/PrimitiveType"/>
+    </owl:Class>
+    
+
+
+    <!-- http://openmodelica.org/openmodelica/Class -->
+
+    <owl:Class rdf:about="http://openmodelica.org/openmodelica/Class">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://openmodelica.org/openmodelica/hasName"/>
+                <owl:someValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://openmodelica.org/openmodelica/Component -->
+
+    <owl:Class rdf:about="http://openmodelica.org/openmodelica/Component">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://openmodelica.org/openmodelica/hasName"/>
+                <owl:someValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://openmodelica.org/openmodelica/Connector -->
+
+    <owl:Class rdf:about="http://openmodelica.org/openmodelica/Connector">
+        <rdfs:subClassOf rdf:resource="http://openmodelica.org/openmodelica/Class"/>
+    </owl:Class>
+    
+
+
+    <!-- http://openmodelica.org/openmodelica/Function -->
+
+    <owl:Class rdf:about="http://openmodelica.org/openmodelica/Function">
+        <rdfs:subClassOf rdf:resource="http://openmodelica.org/openmodelica/Class"/>
+    </owl:Class>
+    
+
+
+    <!-- http://openmodelica.org/openmodelica/Integer -->
+
+    <owl:Class rdf:about="http://openmodelica.org/openmodelica/Integer">
+        <rdfs:subClassOf rdf:resource="http://openmodelica.org/openmodelica/PrimitiveType"/>
+    </owl:Class>
+    
+
+
+    <!-- http://openmodelica.org/openmodelica/Model -->
+
+    <owl:Class rdf:about="http://openmodelica.org/openmodelica/Model">
+        <rdfs:subClassOf rdf:resource="http://openmodelica.org/openmodelica/Class"/>
+    </owl:Class>
+    
+
+
+    <!-- http://openmodelica.org/openmodelica/Package -->
+
+    <owl:Class rdf:about="http://openmodelica.org/openmodelica/Package">
+        <rdfs:subClassOf rdf:resource="http://openmodelica.org/openmodelica/Class"/>
+    </owl:Class>
+    
+
+
+    <!-- http://openmodelica.org/openmodelica/Prefix -->
+
+    <owl:Class rdf:about="http://openmodelica.org/openmodelica/Prefix">
+        <rdfs:subClassOf rdf:resource="http://openmodelica.org/openmodelica/Class"/>
+    </owl:Class>
+    
+
+
+    <!-- http://openmodelica.org/openmodelica/PrimitiveType -->
+
+    <owl:Class rdf:about="http://openmodelica.org/openmodelica/PrimitiveType">
+        <rdfs:subClassOf rdf:resource="http://openmodelica.org/openmodelica/Type"/>
+    </owl:Class>
+    
+
+
+    <!-- http://openmodelica.org/openmodelica/Real -->
+
+    <owl:Class rdf:about="http://openmodelica.org/openmodelica/Real">
+        <rdfs:subClassOf rdf:resource="http://openmodelica.org/openmodelica/PrimitiveType"/>
+    </owl:Class>
+    
+
+
+    <!-- http://openmodelica.org/openmodelica/Record -->
+
+    <owl:Class rdf:about="http://openmodelica.org/openmodelica/Record">
+        <rdfs:subClassOf rdf:resource="http://openmodelica.org/openmodelica/Class"/>
+    </owl:Class>
+    
+
+
+    <!-- http://openmodelica.org/openmodelica/String -->
+
+    <owl:Class rdf:about="http://openmodelica.org/openmodelica/String">
+        <rdfs:subClassOf rdf:resource="http://openmodelica.org/openmodelica/PrimitiveType"/>
+    </owl:Class>
+    
+
+
+    <!-- http://openmodelica.org/openmodelica/Type -->
+
+    <owl:Class rdf:about="http://openmodelica.org/openmodelica/Type">
+        <rdfs:subClassOf rdf:resource="http://openmodelica.org/openmodelica/Class"/>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // General axioms
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://openmodelica.org/openmodelica/Block"/>
+            <rdf:Description rdf:about="http://openmodelica.org/openmodelica/Component"/>
+            <rdf:Description rdf:about="http://openmodelica.org/openmodelica/Connector"/>
+            <rdf:Description rdf:about="http://openmodelica.org/openmodelica/Function"/>
+            <rdf:Description rdf:about="http://openmodelica.org/openmodelica/Model"/>
+            <rdf:Description rdf:about="http://openmodelica.org/openmodelica/Package"/>
+            <rdf:Description rdf:about="http://openmodelica.org/openmodelica/Prefix"/>
+            <rdf:Description rdf:about="http://openmodelica.org/openmodelica/Record"/>
+            <rdf:Description rdf:about="http://openmodelica.org/openmodelica/Type"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://openmodelica.org/openmodelica/Boolean"/>
+            <rdf:Description rdf:about="http://openmodelica.org/openmodelica/Integer"/>
+            <rdf:Description rdf:about="http://openmodelica.org/openmodelica/String"/>
+        </owl:members>
+    </rdf:Description>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
+

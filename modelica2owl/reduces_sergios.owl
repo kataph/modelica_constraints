@@ -1,0 +1,155 @@
+@prefix : <http://test.org#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://test.org> .
+
+<http://test.org> rdf:type owl:Ontology .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://test.org/has-part
+<http://test.org/has-part> rdf:type owl:ObjectProperty .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://test.org/BehavioralElement_sim
+<http://test.org/BehavioralElement_sim> rdf:type owl:Class ;
+                                        rdfs:subClassOf <http://test.org/model> .
+
+
+###  http://test.org/C_Port
+<http://test.org/C_Port> rdf:type owl:Class ;
+                         rdfs:subClassOf <http://test.org/DataPort> .
+
+
+###  http://test.org/Configurator
+<http://test.org/Configurator> rdf:type owl:Class ;
+                               rdfs:subClassOf <http://test.org/model> .
+
+
+###  http://test.org/ControlResource_sim
+<http://test.org/ControlResource_sim> rdf:type owl:Class ;
+                                      rdfs:subClassOf <http://test.org/ManufResource_sim> .
+
+
+###  http://test.org/DataPort
+<http://test.org/DataPort> rdf:type owl:Class ;
+                           rdfs:subClassOf <http://test.org/connector> .
+
+
+###  http://test.org/FU_Port
+<http://test.org/FU_Port> rdf:type owl:Class ;
+                          rdfs:subClassOf <http://test.org/DataPort> ,
+                                          [ rdf:type owl:Restriction ;
+                                            owl:onProperty <http://test.org/has-part> ;
+                                            owl:someValuesFrom <http://test.org/FlowUnit>
+                                          ] .
+
+
+###  http://test.org/FlowUnit
+<http://test.org/FlowUnit> rdf:type owl:Class ;
+                           rdfs:subClassOf <http://test.org/record> ,
+                                           [ rdf:type owl:Restriction ;
+                                             owl:onProperty <http://test.org/has-part> ;
+                                             owl:someValuesFrom <http://test.org/ProductSim>
+                                           ] .
+
+
+###  http://test.org/InputGenerator
+<http://test.org/InputGenerator> rdf:type owl:Class ;
+                                 rdfs:subClassOf <http://test.org/BehavioralElement_sim> ,
+                                                 <http://test.org/OnePortModel> .
+
+
+###  http://test.org/LogisticResource_sim
+<http://test.org/LogisticResource_sim> rdf:type owl:Class ;
+                                       rdfs:subClassOf <http://test.org/ProcessingResource_sim> .
+
+
+###  http://test.org/ManufResource_sim
+<http://test.org/ManufResource_sim> rdf:type owl:Class ;
+                                    rdfs:subClassOf <http://test.org/BehavioralElement_sim> .
+
+
+###  http://test.org/OnePortModel
+<http://test.org/OnePortModel> rdf:type owl:Class ;
+                               rdfs:subClassOf <http://test.org/model> ,
+                                               [ rdf:type owl:Restriction ;
+                                                 owl:onProperty <http://test.org/has-part> ;
+                                                 owl:someValuesFrom <http://test.org/DataPort>
+                                               ] .
+
+
+###  http://test.org/OutputCollector
+<http://test.org/OutputCollector> rdf:type owl:Class ;
+                                  rdfs:subClassOf <http://test.org/BehavioralElement_sim> ,
+                                                  <http://test.org/OnePortModel> .
+
+
+###  http://test.org/ProcessingResource_sim
+<http://test.org/ProcessingResource_sim> rdf:type owl:Class ;
+                                         rdfs:subClassOf <http://test.org/ManufResource_sim> ,
+                                                         <http://test.org/TwoPortsModel> .
+
+
+###  http://test.org/ProductSim
+<http://test.org/ProductSim> rdf:type owl:Class ;
+                             rdfs:subClassOf <http://test.org/record> .
+
+
+###  http://test.org/ResultsManager
+<http://test.org/ResultsManager> rdf:type owl:Class ;
+                                 rdfs:subClassOf <http://test.org/model> .
+
+
+###  http://test.org/SimulationSystem4MS
+<http://test.org/SimulationSystem4MS> rdf:type owl:Class ;
+                                      rdfs:subClassOf <http://test.org/BehavioralElement_sim> ,
+                                                      [ rdf:type owl:Restriction ;
+                                                        owl:onProperty <http://test.org/has-part> ;
+                                                        owl:someValuesFrom <http://test.org/Configurator>
+                                                      ] ,
+                                                      [ rdf:type owl:Restriction ;
+                                                        owl:onProperty <http://test.org/has-part> ;
+                                                        owl:someValuesFrom <http://test.org/InputGenerator>
+                                                      ] ,
+                                                      [ rdf:type owl:Restriction ;
+                                                        owl:onProperty <http://test.org/has-part> ;
+                                                        owl:someValuesFrom <http://test.org/OutputCollector>
+                                                      ] .
+
+
+###  http://test.org/TransformResource_sim
+<http://test.org/TransformResource_sim> rdf:type owl:Class ;
+                                        rdfs:subClassOf <http://test.org/ProcessingResource_sim> .
+
+
+###  http://test.org/TwoPortsModel
+<http://test.org/TwoPortsModel> rdf:type owl:Class ;
+                                rdfs:subClassOf <http://test.org/OnePortModel> .
+
+
+###  http://test.org/connector
+<http://test.org/connector> rdf:type owl:Class ;
+                            rdfs:subClassOf owl:Thing .
+
+
+###  http://test.org/model
+<http://test.org/model> rdf:type owl:Class ;
+                        rdfs:subClassOf owl:Thing .
+
+
+###  http://test.org/record
+<http://test.org/record> rdf:type owl:Class ;
+                         rdfs:subClassOf owl:Thing .
+
+
+###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi
