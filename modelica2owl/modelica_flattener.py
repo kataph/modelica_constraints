@@ -1,10 +1,11 @@
 import subprocess
 
-ABSOLUTE_OPENMODELICA_CLI_PATH = r"C:\Program Files\OpenModelica1.24.0-64bit\bin\omc"#r"'%OPENMODELICAHOME%bin\omc'" <- no variables
-ABSOLUTE_OPENMODELICA_MODEL_PATH = r"C:\Users\Francesco\Desktop\Work_Units\Sergio\modelica_files\myProcRes.mo"
-ABSOLUTE_FLATTENED_MODEL_PATH = r"C:\Users\Francesco\Desktop\Work_Units\Sergio\modelica_files\flattened.mo"
+# necessary hack to import config.py when running script regardless of the working directory
+import sys, os
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+sys.path.append(os.path.dirname(SCRIPT_DIR))
 
-required_libraries = [r"C:\Users\Francesco\Desktop\Work_Units\Sergio\modelica_files\DSML.mo"]
+from config import ABSOLUTE_OPENMODELICA_CLI_PATH, ABSOLUTE_OPENMODELICA_MODEL_PATH, ABSOLUTE_FLATTENED_MODEL_PATH, required_libraries
 
 #subprocess.run(["dir"], shell=True)
 def get_flattened_model():

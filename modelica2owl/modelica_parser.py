@@ -1,14 +1,20 @@
 
 
 import modparc
-from rdflib import Graph as Gr, Namespace as NameSp, URIRef, Literal
+import json
+from rdflib import Graph as Gr
 from rdflib.namespace import RDF, RDFS
 from OMPython import OMCSessionZMQ, ModelicaSystem
-    
-import types
-MODELICA_ONTO_NAMESPACE = "http://test.org/"
+
+# necessary hack to import config.py when running script regardless of the working directory
+import sys, os
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+sys.path.append(os.path.dirname(SCRIPT_DIR))
+
+from config import MODELICA_EXAMPLE_URL, MODELICA_EXAMPLE_NAMESPACE as EX, DOLCE_IS_PART, DOLCE_HAS_PART, DOLCE_NAMESPACE, DOLCE_URL
+
 from owlready2 import *
-ONTO = get_ontology(MODELICA_ONTO_NAMESPACE)
+DOLCE_ONTO = get_ontology(DOLCE_URL)
 
 from modelica_flattener import get_flattened_model, get_model, ABSOLUTE_OPENMODELICA_MODEL_PATH
 
@@ -59,8 +65,8 @@ def get_all_equations_codes(model_definition):
     return [x.code() for x in model_definition.search('Equation')]
 
 def get_all_components_type_name(model_definition):
-    # .search("Token")[-1].name --> Ports.>DataPort<, .search("Token")[].name --> Ports, .search("Token").code() --> Ports.DataPorts
-    return [(x.search("Name")[0].search("Token")[-1].name, x.search("Declaration")[0].search("Token")[0].name) for x in model_definition.search("ComponentClause")]
+    # .search("Token")[-1].name --> Ports.>DataPort<, .search("Token")[].name --> Ports, .code() --> Ports.DataPorts
+    return [(x.search("Name")[0].code(), x.search("Declaration")[0].search("Token")[0].name) for x in model_definition.search("ComponentClause")]
 def get_all_element_modifications_of_component_from_type_and_index(model_definition, component_name_type, idx):
     se = model_definition.search("ComponentClause")
     type_names = map(lambda x: x.search("Name")[0].search("Token")[0].name, se)
@@ -90,51 +96,59 @@ def get_model_base_classes(model_definition):
 def get_model_children(model_definition):
     return [name for type, name in get_all_components_type_name(model_definition)]
 
-def iterate_over_class_definitions(stored_definition):
+def iterate_over_class_definitions(stored_definition, onto):
+    curr_imp_path = ""
+    last_df_was_package = False
     for cl_df in stored_definition.search("ClassDefinition"):
         class_definition_code = cl_df.search("ClassPrefixes")[0].code() # e.g. package or partial model
         last_class_prefix = cl_df.search("ClassPrefixes")[0].search("Token")[-1].name # e.g. package or model
         match last_class_prefix:
             case "package":
+                if last_df_was_package: curr_imp_path+=cl_df.name()+"/"
+                else: curr_imp_path="/".join(curr_imp_path.split("/")[0:-2] + [cl_df.name()]) + "/"
+                print(f"I found package with name {cl_df.name()}, current import path: {curr_imp_path}, last_df_was_package is {last_df_was_package}")
+                last_df_was_package = True
                 continue
             case "model":
-                translate_model_to_owl(cl_df)
+                last_df_was_package = False
+                translate_model_to_owl(cl_df, onto, curr_imp_path)
             case "connector":
-                translate_model_to_owl(cl_df)
+                last_df_was_package = False
+                translate_model_to_owl(cl_df, onto, curr_imp_path)
             case "record":
-                translate_model_to_owl(cl_df)
+                last_df_was_package = False
+                translate_model_to_owl(cl_df, onto, curr_imp_path)
 
-def get_component_class_relation(component, type):
-    return type("has-part", (ObjectProperty,), {"namespace":ONTO})
+def get_component_class_relation():
+    return type(DOLCE_HAS_PART.fragment, (ObjectProperty,), {"namespace":DOLCE_ONTO})
 
-def translate_model_to_owl(model_definition):
+def translate_model_to_owl(model_definition, onto, curr_imp_path = ""):
     components_with_types = get_all_components_type_name(model_definition)
     base_classes = get_model_base_classes(model_definition)
     model_name = get_description_name(model_definition)
     model_type = get_description_type(model_definition)
     Base_classes=[]
     for base_class in base_classes:
-        ParentModel=type(base_class, (Thing,), {"namespace":ONTO})
+        ParentModel=type(curr_imp_path+base_class, (Thing,), {"namespace":onto})
         Base_classes.append(ParentModel)
-    SpecializedParent=type(model_type, (Thing,), {"namespace":ONTO})
+    SpecializedParent=type(model_type, (Thing,), {"namespace":onto})
     Base_classes.append(SpecializedParent)
-    Model=type(model_name, tuple(Base_classes), {"namespace":ONTO})
+    Model=type(curr_imp_path+model_name, tuple(Base_classes), {"namespace":onto})
     #connects=type("connects", (ObjectProperty,),{"namespace":onto, "domain": [Model], "range": [Model]})
     for c_type, component in components_with_types:
-        owl_relation = get_component_class_relation(component, type)
-        Component = type(c_type, (Thing,), {"namespace":ONTO})
-        #print(Model.is_a)
-        Model.is_a.append(owl_relation.some(Component))
-        #print(Model.is_a)
-        #new_attr = getattr(namespace,HAS_PART).some(getattr(namespace, part.name))
-        #setattr(self, "is_a", list(set(new_attr)))
-        #s()
-        #Model., owl_relation, Component
+        owl_parthood_relation = get_component_class_relation()
+        if len(c_type.split('.')) == 1: # c_type = e.g. FlowUnit:
+            Component = type(curr_imp_path+c_type, (Thing,), {"namespace":onto})
+        if len(c_type.split('.')) > 1: # c_type = e.g. DataStructures.FlowUnit
+            number_of_imports_to_delete = len(c_type.split('.'))
+            imp_path_plus_type = "/".join(curr_imp_path.split("/")[0:-number_of_imports_to_delete]+c_type.split('.')) #imp_path_plus_type =eg 'DSML/Ports/' > ['DSML', 'Ports', ''] > ['DSML'] > ['DSML', 'DataStructures', 'FlowUnit'] > 'DSML/DataStructures/FlowUnit/'
+            Component = type(imp_path_plus_type, (Thing,), {"namespace":onto})
+        Model.is_a.append(owl_parthood_relation.some(Component))
 
 
-    print(f"todo ... {model_name} is type {model_type}, it has components {components_with_types} and extends base classes {base_classes} ...")
+    print(f"info ... {model_name} is type {model_type}, it has components {components_with_types} and extends base classes {base_classes} ...")
 
-def translate_flattened_model_to_owl(base_model_definition, flattened_model_definition):
+def translate_flattened_model_to_owl(base_model_definition, flattened_model_definition, onto):
     components_with_types = get_all_components_type_name(flattened_model_definition)
     base_classes = get_model_base_classes(base_model_definition)
     model_name = get_description_name(base_model_definition)
@@ -142,28 +156,37 @@ def translate_flattened_model_to_owl(base_model_definition, flattened_model_defi
 
     Base_classes=[]
     for base_class in base_classes:
-        ParentModel=type(base_class, (Thing,), {"namespace":ONTO})
+        ParentModel=type(base_class, (Thing,), {"namespace":onto})
         Base_classes.append(ParentModel)
-    SpecializedParent=type(model_type, (Thing,), {"namespace":ONTO})
+    SpecializedParent=type(model_type, (Thing,), {"namespace":onto})
     Base_classes.append(SpecializedParent)
-    Model=type(model_name, tuple(Base_classes), {"namespace":ONTO})
+    Model=type(model_name, tuple(Base_classes), {"namespace":onto})
     for c_type, component in components_with_types:
-        owl_relation = get_component_class_relation(component, type)
-        Component = type(c_type, (Thing,), {"namespace":ONTO})
+        owl_relation = get_component_class_relation()
+        Component = type(c_type, (Thing,), {"namespace":onto})
         Model.is_a.append(owl_relation.some(Component))
 
     print(f"todo ... {model_name} is type {model_type}, it has components {components_with_types} and extends base classes {base_classes} ...")
 
-def save_ontology():
-    ONTO.save("output.owl", format="rdfxml") # “rdfxml”, “ntriples”.
+def save_ontology(onto, out_file: str = "output.owl"):
+    onto.save(out_file, format="rdfxml") # “rdfxml”, “ntriples”.
 
-def get_total_instatiation_CST(file_path: str, depended_libraries: list[str]) -> dict:
+def generate_ontology_from_library(abs_lib_path: str, abs_out_file_path: str, ontology_url: str = MODELICA_EXAMPLE_URL):
+    modelica_code = open(abs_lib_path, "rt").read()
+    model_definition = modparc.parse(modelica_code)
+    ONTO = get_ontology(ontology_url)
+    iterate_over_class_definitions(model_definition, ONTO)
+    save_ontology(ONTO, abs_out_file_path)
+
+
+def get_total_instatiation_AST(file_path: str, depended_libraries: list[str]) -> dict:
     """Returns a Concrete Syntax Tree considering extension and redeclaration constructs, 
     Given a .mo modelica absolute file path and a list containing the absolute paths of the library-files the file depends on.
     Makes use of the 'getModelInstance' OpenModelica scripting function."""
     
-    file_name = file_path.split("/")[-1].split("\\")[-1].split('.')[-2]
-    assert file_path[-3:] == ".mo", f"Path does not terminate with '.mo'. File name is {file_name}"
+    # file_name = file_path.split("/")[-1].split("\\")[-1].split('.')[-2]
+    file_name = os.path.basename(file_path)[:-3] 
+    assert file_path[-3:] == ".mo", f"Path does not terminate with '.mo'. Path is {file_path}"
     model_description = modparc.parse(open(file_path, "rt").read())
     model_name = get_description_name(model_description)
     assert model_name == file_name, f"Actual model name ({model_name}) is different from file name ({file_name})"
@@ -173,10 +196,11 @@ def get_total_instatiation_CST(file_path: str, depended_libraries: list[str]) ->
     for lib_path in depended_libraries:
         omc.loadFile(lib_path)
         assert omc.loadFile(lib_path), f"omc.loadFile({lib_path}) did not work: returned {omc.loadFile(lib_path)}"
-    CST = json.loads(omc.sendExpression(f"getModelInstance({model_name})"))
-    return CST
-# these two functions recursively navigate the CST obtained by the OpenModelica compiler function omc.sendExpression("getModelInstance(myProcRes)") 
-def visit_root_node(Node, g):
+    AST = json.loads(omc.sendExpression(f"getModelInstance({model_name})"))
+    return AST
+# these two functions recursively navigate the AST obtained by the OpenModelica compiler function omc.sendExpression("getModelInstance(myProcRes)") 
+def visit_root_node(Node, g: Gr):
+    g.add3 = lambda x,y,z : g.add((x,y,z)) # shortens the writing
     if not isinstance(Node, dict):
         raise TypeError(f"A node of the wrong type has been passed! I was expecting dict, I got {type(Node)}")
     modelName = Node["name"]
@@ -186,36 +210,38 @@ def visit_root_node(Node, g):
     for el in elements:
         match el["$kind"]:
             case "extends":
-                superType = el["baseClass"]["name"]
+                superType = el["baseClass"]["name"].replace(".", "/")
                 visit_node_and_build_component_type_graph(el["baseClass"],EX[modelName],[1],g)
                 g.add3(EX[modelName], RDF.type, EX[superType])
             case "component":
-                componentName = modelName + "." + el["name"]
-                componentType = el["type"]
-                g.add3(EX[modelName], DOLCE["has-part"], EX[componentName])
+                componentName = modelName.replace("/",".") + "." + el["name"]
+                componentType = el["type"].replace(".", "/")
+                # g.add3(EX[componentName], DOLCE_IS_PART, EX[modelName])
+                g.add3(EX[modelName], DOLCE_HAS_PART, EX[componentName])
                 g.add3(EX[componentName], RDF.type, EX[componentType])
 def visit_node_and_build_component_type_graph(Node, rootNode, component_disambiguation_idx, g):
     if not isinstance(Node, (dict)):
         raise TypeError(f"A node of the wrong type has been passed! I was expecting dict, I got {type(Node)}")
-    modelName = Node["name"]
+    modelName = Node["name"].replace(".", "/")
     restriction = Node["restriction"]
     g.add3(EX[modelName], RDFS.subClassOf, EX[restriction])
     elements = Node["elements"] if "elements" in Node else []
     for el in elements:
         match el["$kind"]:
             case "extends":
-                superType = el["baseClass"]["name"]
+                superType = el["baseClass"]["name"].replace(".", "/")
                 visit_node_and_build_component_type_graph(el["baseClass"],rootNode,component_disambiguation_idx,g)
                 g.add3(EX[modelName], RDFS.subClassOf, EX[superType])
             case "component":
-                componentName = modelName + "." + el["name"] + "_" + str(len(component_disambiguation_idx))
+                componentName = modelName.replace("/",".") + "." + el["name"] + "_" + str(len(component_disambiguation_idx))
                 component_disambiguation_idx.append(1)
                 componentType = el["type"]
-                g.add3(rootNode, DOLCE["has-part"], EX[componentName])
+                # g.add3(EX[componentName], DOLCE_IS_PART, rootNode)
+                g.add3(rootNode, DOLCE_HAS_PART, EX[componentName])
                 if isinstance(componentType, str):
-                    g.add3(EX[componentName], RDF.type, EX[componentType])
+                    g.add3(EX[componentName], RDF.type, EX[componentType.replace(".", "/")])
                 else: # in this case componentType is a dict containing name for supertype name and elements  
-                    g.add3(EX[componentName], RDF.type, EX[componentType["name"]])
+                    g.add3(EX[componentName], RDF.type, EX[componentType["name"].replace(".", "/")])
                     visit_node_and_build_component_type_graph(componentType,EX[componentName],component_disambiguation_idx,g)
 
 if __name__ == "__main__":
@@ -224,52 +250,67 @@ if __name__ == "__main__":
             print(o)
     p=P()
 
+    modelica_code = """partial connector FU_Port
+extends DataPort;
+replaceable DataStructures.FlowUnit flowUnit;
+end FU_Port;"""
+    # model_definition = modparc.parse(modelica_code)
+    # x=get_all_components_type_name(model_definition)
+    # print(x)
+    # s()
+    #ABSOLUTE_PATH_OF_PROJECT = "C:\\Users\\Francesco\\Desktop\\Work_Units\\modelica_constraints\\"
+    ABSOLUTE_PATH_OF_PROJECT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    DSML_library_abs_path = os.path.join(ABSOLUTE_PATH_OF_PROJECT,"modelica_files\\DSML.mo")
+    DSML_library_ontology_abs_path = os.path.join(ABSOLUTE_PATH_OF_PROJECT,"ontologies\\DSML-gen.owl")
+    user_modelica_model_abs_path = os.path.join(ABSOLUTE_PATH_OF_PROJECT,"modelica_files\\myProcRes.mo")
+    user_model_plus_DSML_ontology_abs_path = os.path.join(ABSOLUTE_PATH_OF_PROJECT,"ontologies\\individual_plus_DSML.owl")
+    libraries_needed_by_user_model = [DSML_library_abs_path]
 
-    import json
+
+    generate_ontology_from_library(DSML_library_abs_path, DSML_library_ontology_abs_path, ontology_url=MODELICA_EXAMPLE_URL)
+
+    #s()
     g=Gr()
-    EX = NameSp("http://modelica_example.org/")
-    DOLCE = NameSp("http://dolce_namespace.org/")
-    g.add3 = lambda x,y,z : g.add((x,y,z)) # shortens the writing
     g.bind("md", EX)
-    g.bind("dl", DOLCE)
-    # g.add3(EX["name"], EX["has_part"], Literal("2"))
-    # print(g.serialize()); s()
-
-
-    CST = get_total_instatiation_CST("C:\\Users\\Francesco\\Desktop\\Work_Units\\Sergio\\modelica_files\\myProcRes.mo",["C:\\Users\\Francesco\\Desktop\\Work_Units\\Sergio\\modelica_files\\DSML.mo"])
-    visit_root_node(CST, g)
+    g.bind("dl", DOLCE_NAMESPACE)
+    g.parse(DSML_library_ontology_abs_path)
+    # st = g.serialize(); print(st); s()
+    
+    AST = get_total_instatiation_AST(user_modelica_model_abs_path, libraries_needed_by_user_model)
+    visit_root_node(AST, g)
     from pprint import pprint as pp
-    # pp(v)
     st = g.serialize()
     print(st)
+    fo=open(user_model_plus_DSML_ontology_abs_path, "wt")
+    fo.write(st); fo.close()
     import pyperclip
     pyperclip.copy(st)
-    s()
-    # print(CST);s()
+    #s()
+    # print(AST);s()
 
-    # CST = json.load(open(r"C:\Users\Francesco\Desktop\Work_Units\Sergio\modelica_files\myProcResCST.json", "r"))
-    # def visit_tree_and_collect_values(CST: dict, key: str, values: list):
-    #     if not isinstance(CST, (dict,list)):
-    #         print(f"CST is of type: {type(CST)}")
+    # AST = json.load(open(r"C:\Users\Francesco\Desktop\Work_Units\modelica_constraints\modelica_files\myProcResAST.json", "r"))
+    # def visit_tree_and_collect_values(AST: dict, key: str, values: list):
+    #     if not isinstance(AST, (dict,list)):
+    #         print(f"AST is of type: {type(AST)}")
     #         return
-    #     if isinstance(CST, dict):
-    #         for k,v in CST.items():
+    #     if isinstance(AST, dict):
+    #         for k,v in AST.items():
     #             print(f"I am visiting key: {k}")
     #             if k==key: values.append(v)
     #             else: visit_tree_and_collect_values(v, key, values)
-    #     if isinstance(CST, list):
-    #         for el in CST: visit_tree_and_collect_values(el, key, values)
-    # def visit_tree_and_collect_components(CST: dict, values: list):
-    #     if not isinstance(CST, (dict,list)):
-    #         print(f"CST is of type: {type(CST)}, exiting...")
+    #     if isinstance(AST, list):
+    #         for el in AST: visit_tree_and_collect_values(el, key, values)
+    # def visit_tree_and_collect_components(AST: dict, values: list):
+    #     if not isinstance(AST, (dict,list)):
+    #         print(f"AST is of type: {type(AST)}, exiting...")
     #         return
-    #     if isinstance(CST, dict):
-    #         for k,v in CST.items():
+    #     if isinstance(AST, dict):
+    #         for k,v in AST.items():
     #             print(f"I am visiting key: {k}")
-    #             if v=="component": values.append(CST)
+    #             if v=="component": values.append(AST)
     #             else: visit_tree_and_collect_components(v, values)
-    #     if isinstance(CST, list):
-    #         for el in CST: visit_tree_and_collect_components(el, values)
+    #     if isinstance(AST, list):
+    #         for el in AST: visit_tree_and_collect_components(el, values)
 
     # def visit_tree_and_build_component_type_graph(Node, g):
     #     if not isinstance(Node, (dict,list)):
@@ -285,65 +326,22 @@ if __name__ == "__main__":
 
     
     # v = []
-    # visit_tree_and_collect_values(CST, "$kind", v)
-    # visit_tree_and_collect_components(CST, v)
-    # visit_node_and_build_component_type_graph(CST, g)
+    # visit_tree_and_collect_values(AST, "$kind", v)
+    # visit_tree_and_collect_components(AST, v)
+    # visit_node_and_build_component_type_graph(AST, g)
 
-    modelica_code = """
-    model MyModel
-        extends BaseModel1;
-        extends BaseModel2;
-        Real x;
-        Integer y = 10;
-        Resistor r(R=1);
-        equation
-            x = y + 1;
-    end MyModel;
-    """
-    modelica_code2 = """package test
 
-partial class MyOtherModel
-    Real y;
-    Integer z = 100;
-end MyOtherModel;
 
-partial class MyModel
-    extends M;
-    Real x;
-    Integer y = 10;
-    equation
-        x = y + 1;
-end MyModel;
-
-end test;
-"""
-
-    base_modelica = """model 'myProcRes'
-    Real 'port_1.inp';
-    Real 'port_1.out';
-    Real 'port_2.inp';
-    Real 'port_2.out';
-  end 'myProcRes';"""
-
-    # p<get_all_element_modifications_of_component_from_type_and_index(model_definition, "Resistor", 0)
-    # p<get_type_and_modifications_from_component_name(model_definition, "r")
-    # p<get_all_components_type_name(model_definition)
-    # translate_model_to_owl(model_definition)
-
-    #modelica_code3 = open("DSML.mo", "rt").read()
-    #model_definition = modparc.parse(modelica_code3)
-    #iterate_over_class_definitions(model_definition)
-    #save_ontology()
 
     # from OMPython import OMCSessionZMQ, ModelicaSystem
     # omc = OMCSessionZMQ()
 
     # print(omc.sendExpression("getVersion()"))
     # # omc.sendExpression("loadModel(Modelica)")
-    # omc.sendExpression("loadFile(\"C:\\Users\\Francesco\\Desktop\\Work_Units\\Sergio\\modelica_files\\BouncingBall.mo\")")#"loadFile(getInstallationDirectoryPath() + \"/share/doc/omc/testmodels/BouncingBall.mo\")")
+    # omc.sendExpression("loadFile(\"C:\\Users\\Francesco\\Desktop\\Work_Units\\modelica_constraints\\modelica_files\\BouncingBall.mo\")")#"loadFile(getInstallationDirectoryPath() + \"/share/doc/omc/testmodels/BouncingBall.mo\")")
     # # loading library is necessary
-    # omc.sendExpression("loadFile(\"C:\\Users\\Francesco\\Desktop\\Work_Units\\Sergio\\modelica_files\\DSML.mo\")")#"loadFile(getInstallationDirectoryPath() + \"/share/doc/omc/testmodels/BouncingBall.mo\")")
-    # omc.sendExpression("loadFile(\"C:\\Users\\Francesco\\Desktop\\Work_Units\\Sergio\\modelica_files\\myProcRes.mo\")")#"loadFile(getInstallationDirectoryPath() + \"/share/doc/omc/testmodels/BouncingBall.mo\")")
+    # omc.sendExpression("loadFile(\"C:\\Users\\Francesco\\Desktop\\Work_Units\\modelica_constraints\\modelica_files\\DSML.mo\")")#"loadFile(getInstallationDirectoryPath() + \"/share/doc/omc/testmodels/BouncingBall.mo\")")
+    # omc.sendExpression("loadFile(\"C:\\Users\\Francesco\\Desktop\\Work_Units\\modelica_constraints\\modelica_files\\myProcRes.mo\")")#"loadFile(getInstallationDirectoryPath() + \"/share/doc/omc/testmodels/BouncingBall.mo\")")
     # # print(omc.sendExpression("getInstallationDirectoryPath()"))
     # # print(omc.sendExpression("instantiateModel(BouncingBall)"))
     # # print("-->", omc.sendExpression("instantiateModel(DSML)"))
@@ -356,8 +354,8 @@ end test;
     # # print(omc.sendExpression("extendsFrom(BouncingBall)"))
 
     # s()
-    # # mod=ModelicaSystem(r"C:\\Users\\Francesco\\Desktop\\Work_Units\\Sergio\\modelica_files\\BouncingBall.mo","BouncingBall")
-    # mod=ModelicaSystem(r"C:\\Users\\Francesco\\Desktop\\Work_Units\\Sergio\\modelica_files\\myProcRes.mo","myProcRes")
+    # # mod=ModelicaSystem(r"C:\\Users\\Francesco\\Desktop\\Work_Units\\modelica_constraints\\modelica_files\\BouncingBall.mo","BouncingBall")
+    # mod=ModelicaSystem(r"C:\\Users\\Francesco\\Desktop\\Work_Units\\modelica_constraints\\modelica_files\\myProcRes.mo","myProcRes")
     # print(dir(mod))
     # print(mod.getQuantities())
 
@@ -371,4 +369,4 @@ end test;
     # #print(flattened_model_definition)
     # print(get_all_components_type_name(flattened_model_definition))
     # print(get_all_components_type_name(base_model_definition))
-    # #translate_flattened_model_to_owl(base_model_definition, flattened_model_definition)
+    # #translate_flattened_model_to_owl(base_model_definition, flattened_model_definition, ONTO)

@@ -1,0 +1,41 @@
+@prefix ex:    <http://example.org/> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix sh:    <http://www.w3.org/ns/shacl#> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+
+ex:ThumbPropertyShape a sh:propertyShape; sh:class ex:Thumb.
+
+ex:FingerShape sh:class ex:Finger.
+	#sh:property [sh:minCount 1; sh:path ex:has-part].
+ex:Thumb a sh:NodeShape; a rdfs:Class.
+ex:HandShape  a         sh:NodeShape ;
+        sh:property     [ sh:maxCount  5 ;
+                          sh:path      ex:has-part
+                        ] ;
+        sh:property     [ sh:path                 ex:has-part ;
+                          sh:qualifiedMaxCount    1 ;
+                          sh:qualifiedMinCount    1 ;
+                          	#sh:node ex:Thumb; #does not work correctly
+			sh:qualifiedValueShape  ex:ThumbPropertyShape ;
+                          sh:qualifiedValueShapesDisjoint true
+                        ] ;
+        sh:property     [ sh:qualifiedValueShape ex:FingerShape ;
+                          sh:path               ex:has-part ;
+                          sh:qualifiedMaxCount  4 ;
+                          sh:qualifiedMinCount  4 ;
+                          sh:qualifiedValueShapesDisjoint
+                                  true
+                        ] ;
+        sh:targetClass  ex:Hand .
+
+ex:QuadrupedShape a sh:NodeShape; sh:targetClass ex:Quadruped; sh:property ex:hasExactly4Legs .
+ex:hasExactly4Legs a sh:PropertyShape; a rdfs:Class; sh:path ex:has-part; sh:node ex:Leg; sh:qualifiedMinCount 4; ex:qualifiedMaxCount 4 .
+sh:hasOnlyLeg a sh:propertyShape; sh:class ex:Leg.
+
+
+ex:hasExactly4LegsAndDoesntHaveNothingElse a sh:PropertyShape; sh:path ex:has-part; sh:class ex:Leg; sh:minCount 4; ex:maxCount 4 .
+ex:DogShape a sh:NodeShape; sh:targetClass ex:Dog; sh:property ex:hasExactly1Tail .
+ex:hasExactly1Tail a sh:PropertyShape; sh:path ex:has-part; sh:qualifiedValueShape [sh:class ex:Tail]; sh:qualifiedMinCount 1; ex:qualifiedMaxCount 1 .
+ex:hasExactly1TailAndNothingElse a sh:PropertyShape; sh:path ex:has-part; sh:class ex:Tail; sh:minCount 1; ex:maxCount 1 .

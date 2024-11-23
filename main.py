@@ -1,0 +1,2 @@
+from modelica2owl.modelica_parser import get_all_components_type_name
+print(get_all_components_type_name)

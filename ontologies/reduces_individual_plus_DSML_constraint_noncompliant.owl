@@ -1,0 +1,339 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://modelica_example#"
+     xml:base="http://modelica_example"
+     xmlns:dl="https://w3id.org/DOLCE/OWL/DOLCEbasic#"
+     xmlns:md="http://modelica_example/"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+    <owl:Ontology rdf:about="http://modelica_example"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://modelica_example/Real -->
+
+    <owl:Class rdf:about="http://modelica_example/Real"/>
+    
+
+
+    <!-- http://modelica_example/class -->
+
+    <owl:Class rdf:about="http://modelica_example/class"/>
+    
+
+
+    <!-- http://modelica_example/connector -->
+
+    <owl:Class rdf:about="http://modelica_example/connector">
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://modelica_example/model -->
+
+    <owl:Class rdf:about="http://modelica_example/model">
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://modelica_example/record -->
+
+    <owl:Class rdf:about="http://modelica_example/record">
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://modelica_example/DSML/DataStructures/FlowUnit -->
+
+    <owl:Class rdf:about="http://modelica_example/DSML/DataStructures/FlowUnit">
+        <rdfs:subClassOf rdf:resource="http://modelica_example/record"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/DOLCE/OWL/DOLCEbasic#hasConstantPart"/>
+                <owl:someValuesFrom rdf:resource="http://modelica_example/DSML/DataStructures/Product_sim"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://modelica_example/DSML/DataStructures/Product_sim -->
+
+    <owl:Class rdf:about="http://modelica_example/DSML/DataStructures/Product_sim">
+        <rdfs:subClassOf rdf:resource="http://modelica_example/record"/>
+    </owl:Class>
+    
+
+
+    <!-- http://modelica_example/DSML/Models/BehavioralElement_sim -->
+
+    <owl:Class rdf:about="http://modelica_example/DSML/Models/BehavioralElement_sim">
+        <rdfs:subClassOf rdf:resource="http://modelica_example/model"/>
+    </owl:Class>
+    
+
+
+    <!-- http://modelica_example/DSML/Models/Configurator -->
+
+    <owl:Class rdf:about="http://modelica_example/DSML/Models/Configurator">
+        <rdfs:subClassOf rdf:resource="http://modelica_example/model"/>
+    </owl:Class>
+    
+
+
+    <!-- http://modelica_example/DSML/Models/ControlResource_sim -->
+
+    <owl:Class rdf:about="http://modelica_example/DSML/Models/ControlResource_sim">
+        <rdfs:subClassOf rdf:resource="http://modelica_example/DSML/Models/ManufResource_sim"/>
+    </owl:Class>
+    
+
+
+    <!-- http://modelica_example/DSML/Models/InputGenerator -->
+
+    <owl:Class rdf:about="http://modelica_example/DSML/Models/InputGenerator">
+        <rdfs:subClassOf rdf:resource="http://modelica_example/DSML/Models/BehavioralElement_sim"/>
+        <rdfs:subClassOf rdf:resource="http://modelica_example/DSML/Models/OnePortModel"/>
+    </owl:Class>
+    
+
+
+    <!-- http://modelica_example/DSML/Models/LogisticResource_sim -->
+
+    <owl:Class rdf:about="http://modelica_example/DSML/Models/LogisticResource_sim">
+        <rdfs:subClassOf rdf:resource="http://modelica_example/DSML/Models/ProcessingResource_sim"/>
+    </owl:Class>
+    
+
+
+    <!-- http://modelica_example/DSML/Models/ManufResource_sim -->
+
+    <owl:Class rdf:about="http://modelica_example/DSML/Models/ManufResource_sim">
+        <rdfs:subClassOf rdf:resource="http://modelica_example/DSML/Models/BehavioralElement_sim"/>
+    </owl:Class>
+    
+
+
+    <!-- http://modelica_example/DSML/Models/OnePortModel -->
+
+    <owl:Class rdf:about="http://modelica_example/DSML/Models/OnePortModel">
+        <rdfs:subClassOf rdf:resource="http://modelica_example/model"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/DOLCE/OWL/DOLCEbasic#hasConstantPart"/>
+                <owl:someValuesFrom rdf:resource="http://modelica_example/DSML/Ports/DataPort"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://modelica_example/DSML/Models/OutputCollector -->
+
+    <owl:Class rdf:about="http://modelica_example/DSML/Models/OutputCollector">
+        <rdfs:subClassOf rdf:resource="http://modelica_example/DSML/Models/BehavioralElement_sim"/>
+        <rdfs:subClassOf rdf:resource="http://modelica_example/DSML/Models/OnePortModel"/>
+    </owl:Class>
+    
+
+
+    <!-- http://modelica_example/DSML/Models/ProcessingResource_sim -->
+
+    <owl:Class rdf:about="http://modelica_example/DSML/Models/ProcessingResource_sim">
+        <rdfs:subClassOf rdf:resource="http://modelica_example/DSML/Models/ManufResource_sim"/>
+        <rdfs:subClassOf rdf:resource="http://modelica_example/DSML/Models/TwoPortsModel"/>
+    </owl:Class>
+    
+
+
+    <!-- http://modelica_example/DSML/Models/ResultsManager -->
+
+    <owl:Class rdf:about="http://modelica_example/DSML/Models/ResultsManager">
+        <rdfs:subClassOf rdf:resource="http://modelica_example/model"/>
+    </owl:Class>
+    
+
+
+    <!-- http://modelica_example/DSML/Models/SimulationSystem4MS -->
+
+    <owl:Class rdf:about="http://modelica_example/DSML/Models/SimulationSystem4MS">
+        <rdfs:subClassOf rdf:resource="http://modelica_example/DSML/Models/BehavioralElement_sim"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/DOLCE/OWL/DOLCEbasic#hasConstantPart"/>
+                <owl:someValuesFrom rdf:resource="http://modelica_example/DSML/Models/Configurator"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/DOLCE/OWL/DOLCEbasic#hasConstantPart"/>
+                <owl:someValuesFrom rdf:resource="http://modelica_example/DSML/Models/InputGenerator"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/DOLCE/OWL/DOLCEbasic#hasConstantPart"/>
+                <owl:someValuesFrom rdf:resource="http://modelica_example/DSML/Models/OutputCollector"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://modelica_example/DSML/Models/TransformResource_sim -->
+
+    <owl:Class rdf:about="http://modelica_example/DSML/Models/TransformResource_sim">
+        <rdfs:subClassOf rdf:resource="http://modelica_example/DSML/Models/ProcessingResource_sim"/>
+    </owl:Class>
+    
+
+
+    <!-- http://modelica_example/DSML/Models/TwoPortsModel -->
+
+    <owl:Class rdf:about="http://modelica_example/DSML/Models/TwoPortsModel">
+        <rdfs:subClassOf rdf:resource="http://modelica_example/DSML/Models/OnePortModel"/>
+    </owl:Class>
+    
+
+
+    <!-- http://modelica_example/DSML/Ports/C_Port -->
+
+    <owl:Class rdf:about="http://modelica_example/DSML/Ports/C_Port">
+        <rdfs:subClassOf rdf:resource="http://modelica_example/DSML/Ports/DataPort"/>
+    </owl:Class>
+    
+
+
+    <!-- http://modelica_example/DSML/Ports/DataPort -->
+
+    <owl:Class rdf:about="http://modelica_example/DSML/Ports/DataPort">
+        <rdfs:subClassOf rdf:resource="http://modelica_example/connector"/>
+    </owl:Class>
+    
+
+
+    <!-- http://modelica_example/DSML/Ports/FU_Port -->
+
+    <owl:Class rdf:about="http://modelica_example/DSML/Ports/FU_Port">
+        <rdfs:subClassOf rdf:resource="http://modelica_example/DSML/Ports/DataPort"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="https://w3id.org/DOLCE/OWL/DOLCEbasic#hasConstantPart"/>
+                <owl:someValuesFrom rdf:resource="http://modelica_example/DSML/DataStructures/FlowUnit"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://modelica_example/myProcRes/ConcretePort -->
+
+    <owl:Class rdf:about="http://modelica_example/myProcRes/ConcretePort">
+        <rdfs:subClassOf rdf:resource="http://modelica_example/class"/>
+        <rdfs:subClassOf rdf:resource="http://modelica_example/DSML/Ports/DataPort"/>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://modelica_example/DSML.Models.OnePortModel.port_1_1 -->
+
+    <owl:NamedIndividual rdf:about="http://modelica_example/DSML.Models.OnePortModel.port_1_1">
+        <rdf:type rdf:resource="http://modelica_example/myProcRes/ConcretePort"/>
+        <dl:hasConstantPart rdf:resource="http://modelica_example/myProcRes.ConcretePort.inp_2"/>
+        <dl:hasConstantPart rdf:resource="http://modelica_example/myProcRes.ConcretePort.out_3"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://modelica_example/DSML.Models.TwoPortsModel.port_2_4 -->
+
+    <owl:NamedIndividual rdf:about="http://modelica_example/DSML.Models.TwoPortsModel.port_2_4">
+        <rdf:type rdf:resource="http://modelica_example/myProcRes/ConcretePort"/>
+        <dl:hasConstantPart rdf:resource="http://modelica_example/myProcRes.ConcretePort.inp_5"/>
+        <dl:hasConstantPart rdf:resource="http://modelica_example/myProcRes.ConcretePort.out_6"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://modelica_example/myProcRes -->
+
+    <owl:NamedIndividual rdf:about="http://modelica_example/myProcRes">
+        <rdf:type rdf:resource="http://modelica_example/model"/>
+        <rdf:type rdf:resource="http://modelica_example/DSML/Models/ProcessingResource_sim"/>
+        <dl:hasConstantPart rdf:resource="http://modelica_example/DSML.Models.OnePortModel.port_1_1"/>
+        <dl:hasConstantPart rdf:resource="http://modelica_example/DSML.Models.TwoPortsModel.port_2_4"/>
+        <dl:hasConstantPart rdf:resource="http://modelica_example/myProcRes.x"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://modelica_example/myProcRes.ConcretePort.inp_2 -->
+
+    <owl:NamedIndividual rdf:about="http://modelica_example/myProcRes.ConcretePort.inp_2">
+        <rdf:type rdf:resource="http://modelica_example/Real"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://modelica_example/myProcRes.ConcretePort.inp_5 -->
+
+    <owl:NamedIndividual rdf:about="http://modelica_example/myProcRes.ConcretePort.inp_5">
+        <rdf:type rdf:resource="http://modelica_example/Real"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://modelica_example/myProcRes.ConcretePort.out_3 -->
+
+    <owl:NamedIndividual rdf:about="http://modelica_example/myProcRes.ConcretePort.out_3">
+        <rdf:type rdf:resource="http://modelica_example/Real"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://modelica_example/myProcRes.ConcretePort.out_6 -->
+
+    <owl:NamedIndividual rdf:about="http://modelica_example/myProcRes.ConcretePort.out_6">
+        <rdf:type rdf:resource="http://modelica_example/Real"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://modelica_example/myProcRes.x -->
+
+    <owl:NamedIndividual rdf:about="http://modelica_example/myProcRes.x">
+        <rdf:type rdf:resource="http://modelica_example/Real"/>
+    </owl:NamedIndividual>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.29) https://github.com/owlcs/owlapi -->
+
