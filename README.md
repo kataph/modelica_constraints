@@ -24,3 +24,9 @@ to get detailed help message for how to call the script:
 ```
 
 After that, some files will be generated. In particular, an ontology containing an instance-level model with all the components. It can then be opened with Protegé and constraints can be checked by using the SHACL plugin and the supplied constraint library `modelica_constraints\constrants\LAS_Sim_current.shacl`. 
+
+Due to the generation process, some axioms may be redundant. One can use e.g. the ROBOT tool to remove, say, redundant subClassOf axioms. For example:
+```
+java -jar robot.jar reduce --input ontologies/individual_plus_library.owl --output ontologies/individual_plus_library.owl
+``` 
+A copy of a release of the tool is present in `modelica_constraints\ontologies`, while the original repo is at [https://github.com/ontodev/robot]
