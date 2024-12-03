@@ -1,0 +1,1564 @@
+@prefix : <http://modelica_example#> .
+@prefix dl: <https://w3id.org/DOLCE/OWL/DOLCEbasic#> .
+@prefix md: <http://modelica_example/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://modelica_example> .
+
+<http://modelica_example> rdf:type owl:Ontology ;
+                           rdfs:comment "Ontology generate from script c:\\Users\\Francesco\\Desktop\\Work_Units\\modelica_constraints\\modelica2owl\\parsing_modelica_by_omc.py on date 2024-12-02T22:01:02.847182+01:00 - ora solare Europa occidentale" .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  https://w3id.org/DOLCE/OWL/DOLCEbasic#hasConstantPart
+dl:hasConstantPart rdf:type owl:ObjectProperty .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://modelica_example/Boolean
+md:Boolean rdf:type owl:Class ;
+           rdfs:subClassOf md:type .
+
+
+###  http://modelica_example/Integer
+md:Integer rdf:type owl:Class ;
+           rdfs:subClassOf md:type .
+
+
+###  http://modelica_example/Real
+md:Real rdf:type owl:Class ;
+        rdfs:subClassOf md:type .
+
+
+###  http://modelica_example/String
+md:String rdf:type owl:Class ;
+          rdfs:subClassOf md:type .
+
+
+###  http://modelica_example/connector
+md:connector rdf:type owl:Class ;
+             rdfs:subClassOf owl:Thing .
+
+
+###  http://modelica_example/model
+md:model rdf:type owl:Class ;
+         rdfs:subClassOf owl:Thing .
+
+
+###  http://modelica_example/record
+md:record rdf:type owl:Class ;
+          rdfs:subClassOf owl:Thing .
+
+
+###  http://modelica_example/type
+md:type rdf:type owl:Class ;
+        rdfs:subClassOf owl:Thing .
+
+
+###  http://modelica_example/LAS_Sim/Blocks/Assembly_Generator
+<http://modelica_example/LAS_Sim/Blocks/Assembly_Generator> rdf:type owl:Class ;
+                                                            rdfs:subClassOf md:model ,
+                                                                            <http://modelica_example/LAS_Sim/Blocks/BaseAssemblyOnePort> ,
+                                                                            <http://modelica_example/LAS_Sim/ConceptualClasses/Models/BehavioralElement_sim> ,
+                                                                            <http://modelica_example/LAS_Sim/ConceptualClasses/Models/InputGenerator> ,
+                                                                            [ rdf:type owl:Restriction ;
+                                                                              owl:onProperty dl:hasConstantPart ;
+                                                                              owl:someValuesFrom md:Boolean
+                                                                            ] ,
+                                                                            [ rdf:type owl:Restriction ;
+                                                                              owl:onProperty dl:hasConstantPart ;
+                                                                              owl:someValuesFrom md:Integer
+                                                                            ] ,
+                                                                            [ rdf:type owl:Restriction ;
+                                                                              owl:onProperty dl:hasConstantPart ;
+                                                                              owl:someValuesFrom md:Real
+                                                                            ] .
+
+
+###  http://modelica_example/LAS_Sim/Blocks/Assembly_Station
+<http://modelica_example/LAS_Sim/Blocks/Assembly_Station> rdf:type owl:Class ;
+                                                          rdfs:subClassOf md:model ,
+                                                                          <http://modelica_example/LAS_Sim/Blocks/BaseAssemblyOnePort> ,
+                                                                          <http://modelica_example/LAS_Sim/Blocks/BaseAssemblyTwoPort> ,
+                                                                          <http://modelica_example/LAS_Sim/ConceptualClasses/Models/BehavioralElement_sim> ,
+                                                                          <http://modelica_example/LAS_Sim/ConceptualClasses/Models/ManufResource_sim> ,
+                                                                          <http://modelica_example/LAS_Sim/ConceptualClasses/Models/ProcessingResource_sim> ,
+                                                                          <http://modelica_example/LAS_Sim/ConceptualClasses/Models/TransformResource_sim> ,
+                                                                          [ rdf:type owl:Restriction ;
+                                                                            owl:onProperty dl:hasConstantPart ;
+                                                                            owl:someValuesFrom md:Integer
+                                                                          ] ,
+                                                                          [ rdf:type owl:Restriction ;
+                                                                            owl:onProperty dl:hasConstantPart ;
+                                                                            owl:someValuesFrom md:Real
+                                                                          ] .
+
+
+###  http://modelica_example/LAS_Sim/Blocks/Assembly_Station_without_Store
+<http://modelica_example/LAS_Sim/Blocks/Assembly_Station_without_Store> rdf:type owl:Class ;
+                                                                        rdfs:subClassOf md:model ,
+                                                                                        <http://modelica_example/LAS_Sim/Blocks/BaseAssemblyOnePort> ,
+                                                                                        <http://modelica_example/LAS_Sim/Blocks/BaseAssemblyTwoPort> ,
+                                                                                        <http://modelica_example/LAS_Sim/ConceptualClasses/Models/BehavioralElement_sim> ,
+                                                                                        <http://modelica_example/LAS_Sim/ConceptualClasses/Models/ManufResource_sim> ,
+                                                                                        <http://modelica_example/LAS_Sim/ConceptualClasses/Models/ProcessingResource_sim> ,
+                                                                                        <http://modelica_example/LAS_Sim/ConceptualClasses/Models/TransformResource_sim> ,
+                                                                                        [ rdf:type owl:Restriction ;
+                                                                                          owl:onProperty dl:hasConstantPart ;
+                                                                                          owl:someValuesFrom md:Integer
+                                                                                        ] ,
+                                                                                        [ rdf:type owl:Restriction ;
+                                                                                          owl:onProperty dl:hasConstantPart ;
+                                                                                          owl:someValuesFrom md:Real
+                                                                                        ] .
+
+
+###  http://modelica_example/LAS_Sim/Blocks/Assembly_Step
+<http://modelica_example/LAS_Sim/Blocks/Assembly_Step> rdf:type owl:Class ;
+                                                       rdfs:subClassOf md:model ,
+                                                                       <http://modelica_example/LAS_Sim/Blocks/BaseAssemblyOnePort> ,
+                                                                       <http://modelica_example/LAS_Sim/Blocks/BaseAssemblyTwoPort> ,
+                                                                       <http://modelica_example/LAS_Sim/ConceptualClasses/Models/BehavioralElement_sim> ,
+                                                                       <http://modelica_example/LAS_Sim/ConceptualClasses/Models/ManufResource_sim> ,
+                                                                       <http://modelica_example/LAS_Sim/ConceptualClasses/Models/ProcessingResource_sim> ,
+                                                                       <http://modelica_example/LAS_Sim/ConceptualClasses/Models/TransformResource_sim> ,
+                                                                       [ rdf:type owl:Restriction ;
+                                                                         owl:onProperty dl:hasConstantPart ;
+                                                                         owl:someValuesFrom md:Boolean
+                                                                       ] ,
+                                                                       [ rdf:type owl:Restriction ;
+                                                                         owl:onProperty dl:hasConstantPart ;
+                                                                         owl:someValuesFrom md:Integer
+                                                                       ] ,
+                                                                       [ rdf:type owl:Restriction ;
+                                                                         owl:onProperty dl:hasConstantPart ;
+                                                                         owl:someValuesFrom md:Real
+                                                                       ] .
+
+
+###  http://modelica_example/LAS_Sim/Blocks/Assembly_Store
+<http://modelica_example/LAS_Sim/Blocks/Assembly_Store> rdf:type owl:Class ;
+                                                        rdfs:subClassOf md:model ,
+                                                                        <http://modelica_example/LAS_Sim/Blocks/BaseAssemblyOnePort> ,
+                                                                        <http://modelica_example/LAS_Sim/Blocks/BaseAssemblyTwoPort> ,
+                                                                        <http://modelica_example/LAS_Sim/ConceptualClasses/Models/BehavioralElement_sim> ,
+                                                                        <http://modelica_example/LAS_Sim/ConceptualClasses/Models/LogisticResource_sim> ,
+                                                                        <http://modelica_example/LAS_Sim/ConceptualClasses/Models/ManufResource_sim> ,
+                                                                        <http://modelica_example/LAS_Sim/ConceptualClasses/Models/ProcessingResource_sim> ,
+                                                                        [ rdf:type owl:Restriction ;
+                                                                          owl:onProperty dl:hasConstantPart ;
+                                                                          owl:someValuesFrom md:Boolean
+                                                                        ] ,
+                                                                        [ rdf:type owl:Restriction ;
+                                                                          owl:onProperty dl:hasConstantPart ;
+                                                                          owl:someValuesFrom md:Integer
+                                                                        ] ,
+                                                                        [ rdf:type owl:Restriction ;
+                                                                          owl:onProperty dl:hasConstantPart ;
+                                                                          owl:someValuesFrom md:Real
+                                                                        ] .
+
+
+###  http://modelica_example/LAS_Sim/Blocks/BaseAssemblyOnePort
+<http://modelica_example/LAS_Sim/Blocks/BaseAssemblyOnePort> rdf:type owl:Class ;
+                                                             rdfs:subClassOf md:model .
+
+
+###  http://modelica_example/LAS_Sim/Blocks/BaseAssemblyTwoPort
+<http://modelica_example/LAS_Sim/Blocks/BaseAssemblyTwoPort> rdf:type owl:Class ;
+                                                             rdfs:subClassOf md:model ,
+                                                                             <http://modelica_example/LAS_Sim/Blocks/BaseAssemblyOnePort> .
+
+
+###  http://modelica_example/LAS_Sim/Blocks/BasePartOnePort
+<http://modelica_example/LAS_Sim/Blocks/BasePartOnePort> rdf:type owl:Class ;
+                                                         rdfs:subClassOf md:model .
+
+
+###  http://modelica_example/LAS_Sim/Blocks/BasePartTwoPort
+<http://modelica_example/LAS_Sim/Blocks/BasePartTwoPort> rdf:type owl:Class ;
+                                                         rdfs:subClassOf md:model ,
+                                                                         <http://modelica_example/LAS_Sim/Blocks/BasePartOnePort> .
+
+
+###  http://modelica_example/LAS_Sim/Blocks/Control_Stations
+<http://modelica_example/LAS_Sim/Blocks/Control_Stations> rdf:type owl:Class ;
+                                                          rdfs:subClassOf md:model ,
+                                                                          <http://modelica_example/LAS_Sim/ConceptualClasses/Models/BehavioralElement_sim> ,
+                                                                          <http://modelica_example/LAS_Sim/ConceptualClasses/Models/ControlResource_sim> ,
+                                                                          <http://modelica_example/LAS_Sim/ConceptualClasses/Models/ManufResource_sim> ,
+                                                                          [ rdf:type owl:Restriction ;
+                                                                            owl:onProperty dl:hasConstantPart ;
+                                                                            owl:someValuesFrom md:Boolean
+                                                                          ] ,
+                                                                          [ rdf:type owl:Restriction ;
+                                                                            owl:onProperty dl:hasConstantPart ;
+                                                                            owl:someValuesFrom md:Integer
+                                                                          ] ,
+                                                                          [ rdf:type owl:Restriction ;
+                                                                            owl:onProperty dl:hasConstantPart ;
+                                                                            owl:someValuesFrom md:Real
+                                                                          ] .
+
+
+###  http://modelica_example/LAS_Sim/Blocks/Data_Tables_LAS
+<http://modelica_example/LAS_Sim/Blocks/Data_Tables_LAS> rdf:type owl:Class ;
+                                                         rdfs:subClassOf md:model ,
+                                                                         <http://modelica_example/LAS_Sim/ConceptualClasses/Models/Configurator> ,
+                                                                         [ rdf:type owl:Restriction ;
+                                                                           owl:onProperty dl:hasConstantPart ;
+                                                                           owl:someValuesFrom md:Integer
+                                                                         ] ,
+                                                                         [ rdf:type owl:Restriction ;
+                                                                           owl:onProperty dl:hasConstantPart ;
+                                                                           owl:someValuesFrom md:Real
+                                                                         ] .
+
+
+###  http://modelica_example/LAS_Sim/Blocks/Data_evolution_LAS
+<http://modelica_example/LAS_Sim/Blocks/Data_evolution_LAS> rdf:type owl:Class ;
+                                                            rdfs:subClassOf md:model ,
+                                                                            <http://modelica_example/LAS_Sim/ConceptualClasses/Models/Configurator> ,
+                                                                            [ rdf:type owl:Restriction ;
+                                                                              owl:onProperty dl:hasConstantPart ;
+                                                                              owl:someValuesFrom md:Boolean
+                                                                            ] ,
+                                                                            [ rdf:type owl:Restriction ;
+                                                                              owl:onProperty dl:hasConstantPart ;
+                                                                              owl:someValuesFrom md:Integer
+                                                                            ] ,
+                                                                            [ rdf:type owl:Restriction ;
+                                                                              owl:onProperty dl:hasConstantPart ;
+                                                                              owl:someValuesFrom md:Real
+                                                                            ] .
+
+
+###  http://modelica_example/LAS_Sim/Blocks/Final
+<http://modelica_example/LAS_Sim/Blocks/Final> rdf:type owl:Class ;
+                                               rdfs:subClassOf md:model ,
+                                                               <http://modelica_example/LAS_Sim/ConceptualClasses/Models/BehavioralElement_sim> ,
+                                                               <http://modelica_example/LAS_Sim/ConceptualClasses/Models/OutputCollector> .
+
+
+###  http://modelica_example/LAS_Sim/Blocks/Graph_Control
+<http://modelica_example/LAS_Sim/Blocks/Graph_Control> rdf:type owl:Class ;
+                                                       rdfs:subClassOf md:model ,
+                                                                       [ rdf:type owl:Restriction ;
+                                                                         owl:onProperty dl:hasConstantPart ;
+                                                                         owl:someValuesFrom md:Boolean
+                                                                       ] ,
+                                                                       [ rdf:type owl:Restriction ;
+                                                                         owl:onProperty dl:hasConstantPart ;
+                                                                         owl:someValuesFrom md:Integer
+                                                                       ] ,
+                                                                       [ rdf:type owl:Restriction ;
+                                                                         owl:onProperty dl:hasConstantPart ;
+                                                                         owl:someValuesFrom md:Real
+                                                                       ] .
+
+
+###  http://modelica_example/LAS_Sim/Blocks/Inspection_Station
+<http://modelica_example/LAS_Sim/Blocks/Inspection_Station> rdf:type owl:Class ;
+                                                            rdfs:subClassOf md:model ,
+                                                                            <http://modelica_example/LAS_Sim/Blocks/BaseAssemblyOnePort> ,
+                                                                            <http://modelica_example/LAS_Sim/Blocks/BaseAssemblyTwoPort> ,
+                                                                            <http://modelica_example/LAS_Sim/ConceptualClasses/Models/BehavioralElement_sim> ,
+                                                                            <http://modelica_example/LAS_Sim/ConceptualClasses/Models/ManufResource_sim> ,
+                                                                            <http://modelica_example/LAS_Sim/ConceptualClasses/Models/MeassurementResource_sim> ,
+                                                                            <http://modelica_example/LAS_Sim/ConceptualClasses/Models/ProcessingResource_sim> ,
+                                                                            [ rdf:type owl:Restriction ;
+                                                                              owl:onProperty dl:hasConstantPart ;
+                                                                              owl:someValuesFrom md:Integer
+                                                                            ] ,
+                                                                            [ rdf:type owl:Restriction ;
+                                                                              owl:onProperty dl:hasConstantPart ;
+                                                                              owl:someValuesFrom md:Real
+                                                                            ] .
+
+
+###  http://modelica_example/LAS_Sim/Blocks/Inspection_Step
+<http://modelica_example/LAS_Sim/Blocks/Inspection_Step> rdf:type owl:Class ;
+                                                         rdfs:subClassOf md:model ,
+                                                                         <http://modelica_example/LAS_Sim/Blocks/BaseAssemblyOnePort> ,
+                                                                         <http://modelica_example/LAS_Sim/Blocks/BaseAssemblyTwoPort> ,
+                                                                         <http://modelica_example/LAS_Sim/ConceptualClasses/Models/BehavioralElement_sim> ,
+                                                                         <http://modelica_example/LAS_Sim/ConceptualClasses/Models/ManufResource_sim> ,
+                                                                         <http://modelica_example/LAS_Sim/ConceptualClasses/Models/MeassurementResource_sim> ,
+                                                                         <http://modelica_example/LAS_Sim/ConceptualClasses/Models/ProcessingResource_sim> ,
+                                                                         [ rdf:type owl:Restriction ;
+                                                                           owl:onProperty dl:hasConstantPart ;
+                                                                           owl:someValuesFrom md:Boolean
+                                                                         ] ,
+                                                                         [ rdf:type owl:Restriction ;
+                                                                           owl:onProperty dl:hasConstantPart ;
+                                                                           owl:someValuesFrom md:Integer
+                                                                         ] ,
+                                                                         [ rdf:type owl:Restriction ;
+                                                                           owl:onProperty dl:hasConstantPart ;
+                                                                           owl:someValuesFrom md:Real
+                                                                         ] .
+
+
+###  http://modelica_example/LAS_Sim/Blocks/Part_Generator
+<http://modelica_example/LAS_Sim/Blocks/Part_Generator> rdf:type owl:Class ;
+                                                        rdfs:subClassOf md:model ,
+                                                                        <http://modelica_example/LAS_Sim/Blocks/BasePartOnePort> ,
+                                                                        <http://modelica_example/LAS_Sim/ConceptualClasses/Models/BehavioralElement_sim> ,
+                                                                        <http://modelica_example/LAS_Sim/ConceptualClasses/Models/InputGenerator> ,
+                                                                        [ rdf:type owl:Restriction ;
+                                                                          owl:onProperty dl:hasConstantPart ;
+                                                                          owl:someValuesFrom md:Boolean
+                                                                        ] ,
+                                                                        [ rdf:type owl:Restriction ;
+                                                                          owl:onProperty dl:hasConstantPart ;
+                                                                          owl:someValuesFrom md:Integer
+                                                                        ] ,
+                                                                        [ rdf:type owl:Restriction ;
+                                                                          owl:onProperty dl:hasConstantPart ;
+                                                                          owl:someValuesFrom md:Real
+                                                                        ] .
+
+
+###  http://modelica_example/LAS_Sim/Blocks/Part_Store
+<http://modelica_example/LAS_Sim/Blocks/Part_Store> rdf:type owl:Class ;
+                                                    rdfs:subClassOf md:model ,
+                                                                    <http://modelica_example/LAS_Sim/Blocks/BasePartOnePort> ,
+                                                                    <http://modelica_example/LAS_Sim/Blocks/BasePartTwoPort> ,
+                                                                    <http://modelica_example/LAS_Sim/ConceptualClasses/Models/BehavioralElement_sim> ,
+                                                                    <http://modelica_example/LAS_Sim/ConceptualClasses/Models/LogisticResource_sim> ,
+                                                                    <http://modelica_example/LAS_Sim/ConceptualClasses/Models/ManufResource_sim> ,
+                                                                    <http://modelica_example/LAS_Sim/ConceptualClasses/Models/ProcessingResource_sim> ,
+                                                                    [ rdf:type owl:Restriction ;
+                                                                      owl:onProperty dl:hasConstantPart ;
+                                                                      owl:someValuesFrom md:Boolean
+                                                                    ] ,
+                                                                    [ rdf:type owl:Restriction ;
+                                                                      owl:onProperty dl:hasConstantPart ;
+                                                                      owl:someValuesFrom md:Integer
+                                                                    ] ,
+                                                                    [ rdf:type owl:Restriction ;
+                                                                      owl:onProperty dl:hasConstantPart ;
+                                                                      owl:someValuesFrom md:Real
+                                                                    ] .
+
+
+###  http://modelica_example/LAS_Sim/Blocks/SignalView
+<http://modelica_example/LAS_Sim/Blocks/SignalView> rdf:type owl:Class ;
+                                                    rdfs:subClassOf md:model ,
+                                                                    [ rdf:type owl:Restriction ;
+                                                                      owl:onProperty dl:hasConstantPart ;
+                                                                      owl:someValuesFrom md:Real
+                                                                    ] .
+
+
+###  http://modelica_example/LAS_Sim/Blocks/StatisticAnalysis
+<http://modelica_example/LAS_Sim/Blocks/StatisticAnalysis> rdf:type owl:Class ;
+                                                           rdfs:subClassOf md:model ,
+                                                                           [ rdf:type owl:Restriction ;
+                                                                             owl:onProperty dl:hasConstantPart ;
+                                                                             owl:someValuesFrom md:Boolean
+                                                                           ] ,
+                                                                           [ rdf:type owl:Restriction ;
+                                                                             owl:onProperty dl:hasConstantPart ;
+                                                                             owl:someValuesFrom md:Integer
+                                                                           ] ,
+                                                                           [ rdf:type owl:Restriction ;
+                                                                             owl:onProperty dl:hasConstantPart ;
+                                                                             owl:someValuesFrom md:Real
+                                                                           ] .
+
+
+###  http://modelica_example/LAS_Sim/ConceptualClasses/DataStructures/FlowUnit
+<http://modelica_example/LAS_Sim/ConceptualClasses/DataStructures/FlowUnit> rdf:type owl:Class ;
+                                                                            rdfs:subClassOf md:record .
+
+
+###  http://modelica_example/LAS_Sim/ConceptualClasses/DataStructures/ProductSim
+<http://modelica_example/LAS_Sim/ConceptualClasses/DataStructures/ProductSim> rdf:type owl:Class ;
+                                                                              rdfs:subClassOf md:record .
+
+
+###  http://modelica_example/LAS_Sim/ConceptualClasses/Models/BehavioralElement_sim
+<http://modelica_example/LAS_Sim/ConceptualClasses/Models/BehavioralElement_sim> rdf:type owl:Class ;
+                                                                                 rdfs:subClassOf md:model .
+
+
+###  http://modelica_example/LAS_Sim/ConceptualClasses/Models/Configurator
+<http://modelica_example/LAS_Sim/ConceptualClasses/Models/Configurator> rdf:type owl:Class ;
+                                                                        rdfs:subClassOf md:model .
+
+
+###  http://modelica_example/LAS_Sim/ConceptualClasses/Models/ControlResource_sim
+<http://modelica_example/LAS_Sim/ConceptualClasses/Models/ControlResource_sim> rdf:type owl:Class ;
+                                                                               rdfs:subClassOf md:model ,
+                                                                                               <http://modelica_example/LAS_Sim/ConceptualClasses/Models/ManufResource_sim> .
+
+
+###  http://modelica_example/LAS_Sim/ConceptualClasses/Models/InputGenerator
+<http://modelica_example/LAS_Sim/ConceptualClasses/Models/InputGenerator> rdf:type owl:Class ;
+                                                                          rdfs:subClassOf md:model ,
+                                                                                          <http://modelica_example/LAS_Sim/ConceptualClasses/Models/BehavioralElement_sim> .
+
+
+###  http://modelica_example/LAS_Sim/ConceptualClasses/Models/LogisticResource_sim
+<http://modelica_example/LAS_Sim/ConceptualClasses/Models/LogisticResource_sim> rdf:type owl:Class ;
+                                                                                rdfs:subClassOf md:model ,
+                                                                                                <http://modelica_example/LAS_Sim/ConceptualClasses/Models/ProcessingResource_sim> .
+
+
+###  http://modelica_example/LAS_Sim/ConceptualClasses/Models/ManufResource_sim
+<http://modelica_example/LAS_Sim/ConceptualClasses/Models/ManufResource_sim> rdf:type owl:Class ;
+                                                                             rdfs:subClassOf md:model ,
+                                                                                             <http://modelica_example/LAS_Sim/ConceptualClasses/Models/BehavioralElement_sim> .
+
+
+###  http://modelica_example/LAS_Sim/ConceptualClasses/Models/MeassurementResource_sim
+<http://modelica_example/LAS_Sim/ConceptualClasses/Models/MeassurementResource_sim> rdf:type owl:Class ;
+                                                                                    rdfs:subClassOf md:model ,
+                                                                                                    <http://modelica_example/LAS_Sim/ConceptualClasses/Models/ProcessingResource_sim> .
+
+
+###  http://modelica_example/LAS_Sim/ConceptualClasses/Models/OutputCollector
+<http://modelica_example/LAS_Sim/ConceptualClasses/Models/OutputCollector> rdf:type owl:Class ;
+                                                                           rdfs:subClassOf md:model ,
+                                                                                           <http://modelica_example/LAS_Sim/ConceptualClasses/Models/BehavioralElement_sim> .
+
+
+###  http://modelica_example/LAS_Sim/ConceptualClasses/Models/ProcessingResource_sim
+<http://modelica_example/LAS_Sim/ConceptualClasses/Models/ProcessingResource_sim> rdf:type owl:Class ;
+                                                                                  rdfs:subClassOf md:model ,
+                                                                                                  <http://modelica_example/LAS_Sim/ConceptualClasses/Models/ManufResource_sim> .
+
+
+###  http://modelica_example/LAS_Sim/ConceptualClasses/Models/ResultsManager
+<http://modelica_example/LAS_Sim/ConceptualClasses/Models/ResultsManager> rdf:type owl:Class ;
+                                                                          rdfs:subClassOf md:model .
+
+
+###  http://modelica_example/LAS_Sim/ConceptualClasses/Models/SimulationSystem4MS
+<http://modelica_example/LAS_Sim/ConceptualClasses/Models/SimulationSystem4MS> rdf:type owl:Class ;
+                                                                               rdfs:subClassOf md:model ,
+                                                                                               <http://modelica_example/LAS_Sim/ConceptualClasses/Models/BehavioralElement_sim> .
+
+
+###  http://modelica_example/LAS_Sim/ConceptualClasses/Models/TransformResource_sim
+<http://modelica_example/LAS_Sim/ConceptualClasses/Models/TransformResource_sim> rdf:type owl:Class ;
+                                                                                 rdfs:subClassOf md:model ,
+                                                                                                 <http://modelica_example/LAS_Sim/ConceptualClasses/Models/ProcessingResource_sim> .
+
+
+###  http://modelica_example/LAS_Sim/ConceptualClasses/Ports/C_Port
+<http://modelica_example/LAS_Sim/ConceptualClasses/Ports/C_Port> rdf:type owl:Class ;
+                                                                 rdfs:subClassOf md:connector ,
+                                                                                 <http://modelica_example/LAS_Sim/ConceptualClasses/Ports/DataPort> .
+
+
+###  http://modelica_example/LAS_Sim/ConceptualClasses/Ports/DataPort
+<http://modelica_example/LAS_Sim/ConceptualClasses/Ports/DataPort> rdf:type owl:Class ;
+                                                                   rdfs:subClassOf md:connector .
+
+
+###  http://modelica_example/LAS_Sim/ConceptualClasses/Ports/FU_Port
+<http://modelica_example/LAS_Sim/ConceptualClasses/Ports/FU_Port> rdf:type owl:Class ;
+                                                                  rdfs:subClassOf md:connector ,
+                                                                                  <http://modelica_example/LAS_Sim/ConceptualClasses/Ports/DataPort> .
+
+
+###  http://modelica_example/LAS_Sim/Examples/TwoAssemblyStations
+<http://modelica_example/LAS_Sim/Examples/TwoAssemblyStations> rdf:type owl:Class ;
+                                                               rdfs:subClassOf md:model .
+
+
+###  http://modelica_example/LAS_Sim/Examples/TwoAssembly_OneInspection_Station_Control
+<http://modelica_example/LAS_Sim/Examples/TwoAssembly_OneInspection_Station_Control> rdf:type owl:Class ;
+                                                                                     rdfs:subClassOf md:model ,
+                                                                                                     <http://modelica_example/LAS_Sim/ConceptualClasses/Models/BehavioralElement_sim> ,
+                                                                                                     <http://modelica_example/LAS_Sim/ConceptualClasses/Models/SimulationSystem4MS> .
+
+
+###  http://modelica_example/LAS_Sim/Interfaces/AssemblyBatch_Flow
+<http://modelica_example/LAS_Sim/Interfaces/AssemblyBatch_Flow> rdf:type owl:Class ;
+                                                                rdfs:subClassOf md:connector ,
+                                                                                <http://modelica_example/LAS_Sim/ConceptualClasses/Ports/C_Port> ,
+                                                                                <http://modelica_example/LAS_Sim/ConceptualClasses/Ports/DataPort> ,
+                                                                                <http://modelica_example/LAS_Sim/ConceptualClasses/Ports/FU_Port> .
+
+
+###  http://modelica_example/LAS_Sim/Interfaces/Control_Station
+<http://modelica_example/LAS_Sim/Interfaces/Control_Station> rdf:type owl:Class ;
+                                                             rdfs:subClassOf md:connector ,
+                                                                             <http://modelica_example/LAS_Sim/ConceptualClasses/Ports/DataPort> ,
+                                                                             [ rdf:type owl:Restriction ;
+                                                                               owl:onProperty dl:hasConstantPart ;
+                                                                               owl:someValuesFrom md:Boolean
+                                                                             ] ,
+                                                                             [ rdf:type owl:Restriction ;
+                                                                               owl:onProperty dl:hasConstantPart ;
+                                                                               owl:someValuesFrom md:Integer
+                                                                             ] ,
+                                                                             [ rdf:type owl:Restriction ;
+                                                                               owl:onProperty dl:hasConstantPart ;
+                                                                               owl:someValuesFrom md:Real
+                                                                             ] .
+
+
+###  http://modelica_example/LAS_Sim/Interfaces/EventPortInput
+<http://modelica_example/LAS_Sim/Interfaces/EventPortInput> rdf:type owl:Class ;
+                                                            rdfs:subClassOf md:Boolean ,
+                                                                            md:connector .
+
+
+###  http://modelica_example/LAS_Sim/Interfaces/EventPortOutput
+<http://modelica_example/LAS_Sim/Interfaces/EventPortOutput> rdf:type owl:Class ;
+                                                             rdfs:subClassOf md:Boolean ,
+                                                                             md:connector .
+
+
+###  http://modelica_example/LAS_Sim/Interfaces/PartBatch_Flow
+<http://modelica_example/LAS_Sim/Interfaces/PartBatch_Flow> rdf:type owl:Class ;
+                                                            rdfs:subClassOf md:connector ,
+                                                                            <http://modelica_example/LAS_Sim/ConceptualClasses/Ports/C_Port> ,
+                                                                            <http://modelica_example/LAS_Sim/ConceptualClasses/Ports/DataPort> ,
+                                                                            <http://modelica_example/LAS_Sim/ConceptualClasses/Ports/FU_Port> .
+
+
+###  http://modelica_example/LAS_Sim/Types/A_Status
+<http://modelica_example/LAS_Sim/Types/A_Status> rdf:type owl:Class ;
+                                                 rdfs:subClassOf md:type .
+
+
+###  http://modelica_example/LAS_Sim/Types/AssemblyData
+<http://modelica_example/LAS_Sim/Types/AssemblyData> rdf:type owl:Class ;
+                                                     rdfs:subClassOf md:record ,
+                                                                     <http://modelica_example/LAS_Sim/ConceptualClasses/DataStructures/ProductSim> ,
+                                                                     [ rdf:type owl:Restriction ;
+                                                                       owl:onProperty dl:hasConstantPart ;
+                                                                       owl:someValuesFrom md:Integer
+                                                                     ] .
+
+
+###  http://modelica_example/LAS_Sim/Types/PartData
+<http://modelica_example/LAS_Sim/Types/PartData> rdf:type owl:Class ;
+                                                 rdfs:subClassOf md:record ,
+                                                                 <http://modelica_example/LAS_Sim/ConceptualClasses/DataStructures/ProductSim> ,
+                                                                 [ rdf:type owl:Restriction ;
+                                                                   owl:onProperty dl:hasConstantPart ;
+                                                                   owl:someValuesFrom md:Integer
+                                                                 ] .
+
+
+###  http://modelica_example/LAS_Sim/Types/SincronizationData
+<http://modelica_example/LAS_Sim/Types/SincronizationData> rdf:type owl:Class ;
+                                                           rdfs:subClassOf md:record ,
+                                                                           [ rdf:type owl:Restriction ;
+                                                                             owl:onProperty dl:hasConstantPart ;
+                                                                             owl:someValuesFrom md:Boolean
+                                                                           ] .
+
+
+###  http://modelica_example/LAS_Sim/Types/Status
+<http://modelica_example/LAS_Sim/Types/Status> rdf:type owl:Class ;
+                                               rdfs:subClassOf md:type .
+
+
+###  http://modelica_example/LAS_Sim/Types/UnitaryAssemblyBatch
+<http://modelica_example/LAS_Sim/Types/UnitaryAssemblyBatch> rdf:type owl:Class ;
+                                                             rdfs:subClassOf md:record ,
+                                                                             <http://modelica_example/LAS_Sim/ConceptualClasses/DataStructures/FlowUnit> .
+
+
+###  http://modelica_example/LAS_Sim/Types/UnitaryPartBatch
+<http://modelica_example/LAS_Sim/Types/UnitaryPartBatch> rdf:type owl:Class ;
+                                                         rdfs:subClassOf md:record ,
+                                                                         <http://modelica_example/LAS_Sim/ConceptualClasses/DataStructures/FlowUnit> .
+
+
+###  http://modelica_example/LAS_Sim/Types/W_Status
+<http://modelica_example/LAS_Sim/Types/W_Status> rdf:type owl:Class ;
+                                                 rdfs:subClassOf md:type .
+
+
+###  http://modelica_example/Random/Seed
+<http://modelica_example/Random/Seed> rdf:type owl:Class ;
+                                      rdfs:subClassOf md:Real ,
+                                                      md:type .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://modelica_example/LAS_Sim.Blocks.Assembly_Station.assembly_Step_32
+md:LAS_Sim.Blocks.Assembly_Station.assembly_Step_32 rdf:type owl:NamedIndividual ,
+                                                             <http://modelica_example/LAS_Sim/Blocks/Assembly_Step> ;
+                                                    dl:hasConstantPart md:LAS_Sim.Blocks.Assembly_Step.inp_c_45 ,
+                                                                       md:LAS_Sim.Blocks.Assembly_Step.inp_p_41 ,
+                                                                       md:LAS_Sim.Blocks.Assembly_Step.v_edge_send_55 ,
+                                                                       md:LAS_Sim.Blocks.Assembly_Step.v_inp_assembly_53 ,
+                                                                       md:LAS_Sim.Blocks.Assembly_Step.v_output_54 ,
+                                                                       md:LAS_Sim.Blocks.Assembly_Step.v_readyToprocess_52 ,
+                                                                       md:LAS_Sim.Blocks.Assembly_Step.view_ass_event_51 ,
+                                                                       md:LAS_Sim.Blocks.Assembly_Step.view_set_event_49 ,
+                                                                       md:LAS_Sim.Blocks.Assembly_Step.view_set_req_50 ,
+                                                                       md:LAS_Sim.Blocks.Assembly_Step.view_st_46 ,
+                                                                       md:LAS_Sim.Blocks.BaseAssemblyOnePort.outp_a_33 ,
+                                                                       md:LAS_Sim.Blocks.BaseAssemblyTwoPort.inp_a_37 .
+
+
+###  http://modelica_example/LAS_Sim.Blocks.Assembly_Station.assembly_Step_89
+md:LAS_Sim.Blocks.Assembly_Station.assembly_Step_89 rdf:type owl:NamedIndividual ,
+                                                             <http://modelica_example/LAS_Sim/Blocks/Assembly_Step> ;
+                                                    dl:hasConstantPart md:LAS_Sim.Blocks.Assembly_Step.inp_c_102 ,
+                                                                       md:LAS_Sim.Blocks.Assembly_Step.inp_p_98 ,
+                                                                       md:LAS_Sim.Blocks.Assembly_Step.v_edge_send_110 ,
+                                                                       md:LAS_Sim.Blocks.Assembly_Step.v_inp_assembly_108 ,
+                                                                       md:LAS_Sim.Blocks.Assembly_Step.v_output_109 ,
+                                                                       md:LAS_Sim.Blocks.Assembly_Step.v_readyToprocess_107 ,
+                                                                       md:LAS_Sim.Blocks.Assembly_Step.view_ass_event_106 ,
+                                                                       md:LAS_Sim.Blocks.Assembly_Step.view_set_event_104 ,
+                                                                       md:LAS_Sim.Blocks.Assembly_Step.view_set_req_105 ,
+                                                                       md:LAS_Sim.Blocks.Assembly_Step.view_st_103 ,
+                                                                       md:LAS_Sim.Blocks.BaseAssemblyOnePort.outp_a_90 ,
+                                                                       md:LAS_Sim.Blocks.BaseAssemblyTwoPort.inp_a_94 .
+
+
+###  http://modelica_example/LAS_Sim.Blocks.Assembly_Station.assembly_Store_14
+md:LAS_Sim.Blocks.Assembly_Station.assembly_Store_14 rdf:type owl:NamedIndividual ,
+                                                              <http://modelica_example/LAS_Sim/Blocks/Assembly_Store> ;
+                                                     dl:hasConstantPart md:LAS_Sim.Blocks.BaseAssemblyOnePort.outp_a_15 ,
+                                                                        md:LAS_Sim.Blocks.BaseAssemblyTwoPort.inp_a_19 .
+
+
+###  http://modelica_example/LAS_Sim.Blocks.Assembly_Station.assembly_Store_71
+md:LAS_Sim.Blocks.Assembly_Station.assembly_Store_71 rdf:type owl:NamedIndividual ,
+                                                              <http://modelica_example/LAS_Sim/Blocks/Assembly_Store> ;
+                                                     dl:hasConstantPart md:LAS_Sim.Blocks.BaseAssemblyOnePort.outp_a_72 ,
+                                                                        md:LAS_Sim.Blocks.BaseAssemblyTwoPort.inp_a_76 .
+
+
+###  http://modelica_example/LAS_Sim.Blocks.Assembly_Station.inp_c_13
+md:LAS_Sim.Blocks.Assembly_Station.inp_c_13 rdf:type owl:NamedIndividual ,
+                                                     <http://modelica_example/LAS_Sim/Interfaces/Control_Station> .
+
+
+###  http://modelica_example/LAS_Sim.Blocks.Assembly_Station.inp_c_70
+md:LAS_Sim.Blocks.Assembly_Station.inp_c_70 rdf:type owl:NamedIndividual ,
+                                                     <http://modelica_example/LAS_Sim/Interfaces/Control_Station> .
+
+
+###  http://modelica_example/LAS_Sim.Blocks.Assembly_Station.part_Generator_111
+md:LAS_Sim.Blocks.Assembly_Station.part_Generator_111 rdf:type owl:NamedIndividual ,
+                                                               <http://modelica_example/LAS_Sim/Blocks/Part_Generator> ;
+                                                      dl:hasConstantPart md:LAS_Sim.Blocks.BasePartOnePort.outp_p_112 .
+
+
+###  http://modelica_example/LAS_Sim.Blocks.Assembly_Station.part_Generator_56
+md:LAS_Sim.Blocks.Assembly_Station.part_Generator_56 rdf:type owl:NamedIndividual ,
+                                                              <http://modelica_example/LAS_Sim/Blocks/Part_Generator> ;
+                                                     dl:hasConstantPart md:LAS_Sim.Blocks.BasePartOnePort.outp_p_57 .
+
+
+###  http://modelica_example/LAS_Sim.Blocks.Assembly_Station.part_Store_23
+md:LAS_Sim.Blocks.Assembly_Station.part_Store_23 rdf:type owl:NamedIndividual ,
+                                                          <http://modelica_example/LAS_Sim/Blocks/Part_Store> ;
+                                                 dl:hasConstantPart md:LAS_Sim.Blocks.BasePartOnePort.outp_p_24 ,
+                                                                    md:LAS_Sim.Blocks.BasePartTwoPort.inp_p_28 .
+
+
+###  http://modelica_example/LAS_Sim.Blocks.Assembly_Station.part_Store_80
+md:LAS_Sim.Blocks.Assembly_Station.part_Store_80 rdf:type owl:NamedIndividual ,
+                                                          <http://modelica_example/LAS_Sim/Blocks/Part_Store> ;
+                                                 dl:hasConstantPart md:LAS_Sim.Blocks.BasePartOnePort.outp_p_81 ,
+                                                                    md:LAS_Sim.Blocks.BasePartTwoPort.inp_p_85 .
+
+
+###  http://modelica_example/LAS_Sim.Blocks.Assembly_Step.inp_c_102
+md:LAS_Sim.Blocks.Assembly_Step.inp_c_102 rdf:type owl:NamedIndividual ,
+                                                   <http://modelica_example/LAS_Sim/Interfaces/Control_Station> .
+
+
+###  http://modelica_example/LAS_Sim.Blocks.Assembly_Step.inp_c_45
+md:LAS_Sim.Blocks.Assembly_Step.inp_c_45 rdf:type owl:NamedIndividual ,
+                                                  <http://modelica_example/LAS_Sim/Interfaces/Control_Station> .
+
+
+###  http://modelica_example/LAS_Sim.Blocks.Assembly_Step.inp_p_41
+md:LAS_Sim.Blocks.Assembly_Step.inp_p_41 rdf:type owl:NamedIndividual ,
+                                                  <http://modelica_example/LAS_Sim/Interfaces/PartBatch_Flow> ;
+                                         dl:hasConstantPart md:LAS_Sim.Interfaces.PartBatch_Flow.batchData_43 ,
+                                                            md:LAS_Sim.Interfaces.PartBatch_Flow.sincData_42 .
+
+
+###  http://modelica_example/LAS_Sim.Blocks.Assembly_Step.inp_p_98
+md:LAS_Sim.Blocks.Assembly_Step.inp_p_98 rdf:type owl:NamedIndividual ,
+                                                  <http://modelica_example/LAS_Sim/Interfaces/PartBatch_Flow> ;
+                                         dl:hasConstantPart md:LAS_Sim.Interfaces.PartBatch_Flow.batchData_100 ,
+                                                            md:LAS_Sim.Interfaces.PartBatch_Flow.sincData_99 .
+
+
+###  http://modelica_example/LAS_Sim.Blocks.Assembly_Step.v_edge_send_110
+md:LAS_Sim.Blocks.Assembly_Step.v_edge_send_110 rdf:type owl:NamedIndividual ,
+                                                         <http://modelica_example/LAS_Sim/Blocks/SignalView> .
+
+
+###  http://modelica_example/LAS_Sim.Blocks.Assembly_Step.v_edge_send_55
+md:LAS_Sim.Blocks.Assembly_Step.v_edge_send_55 rdf:type owl:NamedIndividual ,
+                                                        <http://modelica_example/LAS_Sim/Blocks/SignalView> .
+
+
+###  http://modelica_example/LAS_Sim.Blocks.Assembly_Step.v_inp_assembly_108
+md:LAS_Sim.Blocks.Assembly_Step.v_inp_assembly_108 rdf:type owl:NamedIndividual ,
+                                                            <http://modelica_example/LAS_Sim/Blocks/SignalView> .
+
+
+###  http://modelica_example/LAS_Sim.Blocks.Assembly_Step.v_inp_assembly_53
+md:LAS_Sim.Blocks.Assembly_Step.v_inp_assembly_53 rdf:type owl:NamedIndividual ,
+                                                           <http://modelica_example/LAS_Sim/Blocks/SignalView> .
+
+
+###  http://modelica_example/LAS_Sim.Blocks.Assembly_Step.v_output_109
+md:LAS_Sim.Blocks.Assembly_Step.v_output_109 rdf:type owl:NamedIndividual ,
+                                                      <http://modelica_example/LAS_Sim/Blocks/SignalView> .
+
+
+###  http://modelica_example/LAS_Sim.Blocks.Assembly_Step.v_output_54
+md:LAS_Sim.Blocks.Assembly_Step.v_output_54 rdf:type owl:NamedIndividual ,
+                                                     <http://modelica_example/LAS_Sim/Blocks/SignalView> .
+
+
+###  http://modelica_example/LAS_Sim.Blocks.Assembly_Step.v_readyToprocess_107
+md:LAS_Sim.Blocks.Assembly_Step.v_readyToprocess_107 rdf:type owl:NamedIndividual ,
+                                                              <http://modelica_example/LAS_Sim/Blocks/SignalView> .
+
+
+###  http://modelica_example/LAS_Sim.Blocks.Assembly_Step.v_readyToprocess_52
+md:LAS_Sim.Blocks.Assembly_Step.v_readyToprocess_52 rdf:type owl:NamedIndividual ,
+                                                             <http://modelica_example/LAS_Sim/Blocks/SignalView> .
+
+
+###  http://modelica_example/LAS_Sim.Blocks.Assembly_Step.view_ass_event_106
+md:LAS_Sim.Blocks.Assembly_Step.view_ass_event_106 rdf:type owl:NamedIndividual ,
+                                                            <http://modelica_example/LAS_Sim/Blocks/SignalView> .
+
+
+###  http://modelica_example/LAS_Sim.Blocks.Assembly_Step.view_ass_event_51
+md:LAS_Sim.Blocks.Assembly_Step.view_ass_event_51 rdf:type owl:NamedIndividual ,
+                                                           <http://modelica_example/LAS_Sim/Blocks/SignalView> .
+
+
+###  http://modelica_example/LAS_Sim.Blocks.Assembly_Step.view_set_event_104
+md:LAS_Sim.Blocks.Assembly_Step.view_set_event_104 rdf:type owl:NamedIndividual ,
+                                                            <http://modelica_example/LAS_Sim/Blocks/SignalView> .
+
+
+###  http://modelica_example/LAS_Sim.Blocks.Assembly_Step.view_set_event_49
+md:LAS_Sim.Blocks.Assembly_Step.view_set_event_49 rdf:type owl:NamedIndividual ,
+                                                           <http://modelica_example/LAS_Sim/Blocks/SignalView> .
+
+
+###  http://modelica_example/LAS_Sim.Blocks.Assembly_Step.view_set_req_105
+md:LAS_Sim.Blocks.Assembly_Step.view_set_req_105 rdf:type owl:NamedIndividual ,
+                                                          <http://modelica_example/LAS_Sim/Blocks/SignalView> .
+
+
+###  http://modelica_example/LAS_Sim.Blocks.Assembly_Step.view_set_req_50
+md:LAS_Sim.Blocks.Assembly_Step.view_set_req_50 rdf:type owl:NamedIndividual ,
+                                                         <http://modelica_example/LAS_Sim/Blocks/SignalView> .
+
+
+###  http://modelica_example/LAS_Sim.Blocks.Assembly_Step.view_st_103
+md:LAS_Sim.Blocks.Assembly_Step.view_st_103 rdf:type owl:NamedIndividual ,
+                                                     <http://modelica_example/LAS_Sim/Blocks/SignalView> .
+
+
+###  http://modelica_example/LAS_Sim.Blocks.Assembly_Step.view_st_46
+md:LAS_Sim.Blocks.Assembly_Step.view_st_46 rdf:type owl:NamedIndividual ,
+                                                    <http://modelica_example/LAS_Sim/Blocks/SignalView> .
+
+
+###  http://modelica_example/LAS_Sim.Blocks.BaseAssemblyOnePort.outp_a_117
+md:LAS_Sim.Blocks.BaseAssemblyOnePort.outp_a_117 rdf:type owl:NamedIndividual ,
+                                                          <http://modelica_example/LAS_Sim/Interfaces/AssemblyBatch_Flow> ;
+                                                 dl:hasConstantPart md:LAS_Sim.Interfaces.AssemblyBatch_Flow.batchData_119 ,
+                                                                    md:LAS_Sim.Interfaces.AssemblyBatch_Flow.sincData_118 .
+
+
+###  http://modelica_example/LAS_Sim.Blocks.BaseAssemblyOnePort.outp_a_122
+md:LAS_Sim.Blocks.BaseAssemblyOnePort.outp_a_122 rdf:type owl:NamedIndividual ,
+                                                          <http://modelica_example/LAS_Sim/Interfaces/AssemblyBatch_Flow> ;
+                                                 dl:hasConstantPart md:LAS_Sim.Interfaces.AssemblyBatch_Flow.batchData_124 ,
+                                                                    md:LAS_Sim.Interfaces.AssemblyBatch_Flow.sincData_123 .
+
+
+###  http://modelica_example/LAS_Sim.Blocks.BaseAssemblyOnePort.outp_a_132
+md:LAS_Sim.Blocks.BaseAssemblyOnePort.outp_a_132 rdf:type owl:NamedIndividual ,
+                                                          <http://modelica_example/LAS_Sim/Interfaces/AssemblyBatch_Flow> ;
+                                                 dl:hasConstantPart md:LAS_Sim.Interfaces.AssemblyBatch_Flow.batchData_134 ,
+                                                                    md:LAS_Sim.Interfaces.AssemblyBatch_Flow.sincData_133 .
+
+
+###  http://modelica_example/LAS_Sim.Blocks.BaseAssemblyOnePort.outp_a_141
+md:LAS_Sim.Blocks.BaseAssemblyOnePort.outp_a_141 rdf:type owl:NamedIndividual ,
+                                                          <http://modelica_example/LAS_Sim/Interfaces/AssemblyBatch_Flow> ;
+                                                 dl:hasConstantPart md:LAS_Sim.Interfaces.AssemblyBatch_Flow.batchData_143 ,
+                                                                    md:LAS_Sim.Interfaces.AssemblyBatch_Flow.sincData_142 .
+
+
+###  http://modelica_example/LAS_Sim.Blocks.BaseAssemblyOnePort.outp_a_15
+md:LAS_Sim.Blocks.BaseAssemblyOnePort.outp_a_15 rdf:type owl:NamedIndividual ,
+                                                         <http://modelica_example/LAS_Sim/Interfaces/AssemblyBatch_Flow> ;
+                                                dl:hasConstantPart md:LAS_Sim.Interfaces.AssemblyBatch_Flow.batchData_17 ,
+                                                                   md:LAS_Sim.Interfaces.AssemblyBatch_Flow.sincData_16 .
+
+
+###  http://modelica_example/LAS_Sim.Blocks.BaseAssemblyOnePort.outp_a_33
+md:LAS_Sim.Blocks.BaseAssemblyOnePort.outp_a_33 rdf:type owl:NamedIndividual ,
+                                                         <http://modelica_example/LAS_Sim/Interfaces/AssemblyBatch_Flow> ;
+                                                dl:hasConstantPart md:LAS_Sim.Interfaces.AssemblyBatch_Flow.batchData_35 ,
+                                                                   md:LAS_Sim.Interfaces.AssemblyBatch_Flow.sincData_34 .
+
+
+###  http://modelica_example/LAS_Sim.Blocks.BaseAssemblyOnePort.outp_a_5
+md:LAS_Sim.Blocks.BaseAssemblyOnePort.outp_a_5 rdf:type owl:NamedIndividual ,
+                                                        <http://modelica_example/LAS_Sim/Interfaces/AssemblyBatch_Flow> ;
+                                               dl:hasConstantPart md:LAS_Sim.Interfaces.AssemblyBatch_Flow.batchData_7 ,
+                                                                  md:LAS_Sim.Interfaces.AssemblyBatch_Flow.sincData_6 .
+
+
+###  http://modelica_example/LAS_Sim.Blocks.BaseAssemblyOnePort.outp_a_62
+md:LAS_Sim.Blocks.BaseAssemblyOnePort.outp_a_62 rdf:type owl:NamedIndividual ,
+                                                         <http://modelica_example/LAS_Sim/Interfaces/AssemblyBatch_Flow> ;
+                                                dl:hasConstantPart md:LAS_Sim.Interfaces.AssemblyBatch_Flow.batchData_64 ,
+                                                                   md:LAS_Sim.Interfaces.AssemblyBatch_Flow.sincData_63 .
+
+
+###  http://modelica_example/LAS_Sim.Blocks.BaseAssemblyOnePort.outp_a_72
+md:LAS_Sim.Blocks.BaseAssemblyOnePort.outp_a_72 rdf:type owl:NamedIndividual ,
+                                                         <http://modelica_example/LAS_Sim/Interfaces/AssemblyBatch_Flow> ;
+                                                dl:hasConstantPart md:LAS_Sim.Interfaces.AssemblyBatch_Flow.batchData_74 ,
+                                                                   md:LAS_Sim.Interfaces.AssemblyBatch_Flow.sincData_73 .
+
+
+###  http://modelica_example/LAS_Sim.Blocks.BaseAssemblyOnePort.outp_a_90
+md:LAS_Sim.Blocks.BaseAssemblyOnePort.outp_a_90 rdf:type owl:NamedIndividual ,
+                                                         <http://modelica_example/LAS_Sim/Interfaces/AssemblyBatch_Flow> ;
+                                                dl:hasConstantPart md:LAS_Sim.Interfaces.AssemblyBatch_Flow.batchData_92 ,
+                                                                   md:LAS_Sim.Interfaces.AssemblyBatch_Flow.sincData_91 .
+
+
+###  http://modelica_example/LAS_Sim.Blocks.BaseAssemblyTwoPort.inp_a_126
+md:LAS_Sim.Blocks.BaseAssemblyTwoPort.inp_a_126 rdf:type owl:NamedIndividual ,
+                                                         <http://modelica_example/LAS_Sim/Interfaces/AssemblyBatch_Flow> ;
+                                                dl:hasConstantPart md:LAS_Sim.Interfaces.AssemblyBatch_Flow.batchData_128 ,
+                                                                   md:LAS_Sim.Interfaces.AssemblyBatch_Flow.sincData_127 .
+
+
+###  http://modelica_example/LAS_Sim.Blocks.BaseAssemblyTwoPort.inp_a_136
+md:LAS_Sim.Blocks.BaseAssemblyTwoPort.inp_a_136 rdf:type owl:NamedIndividual ,
+                                                         <http://modelica_example/LAS_Sim/Interfaces/AssemblyBatch_Flow> ;
+                                                dl:hasConstantPart md:LAS_Sim.Interfaces.AssemblyBatch_Flow.batchData_138 ,
+                                                                   md:LAS_Sim.Interfaces.AssemblyBatch_Flow.sincData_137 .
+
+
+###  http://modelica_example/LAS_Sim.Blocks.BaseAssemblyTwoPort.inp_a_145
+md:LAS_Sim.Blocks.BaseAssemblyTwoPort.inp_a_145 rdf:type owl:NamedIndividual ,
+                                                         <http://modelica_example/LAS_Sim/Interfaces/AssemblyBatch_Flow> ;
+                                                dl:hasConstantPart md:LAS_Sim.Interfaces.AssemblyBatch_Flow.batchData_147 ,
+                                                                   md:LAS_Sim.Interfaces.AssemblyBatch_Flow.sincData_146 .
+
+
+###  http://modelica_example/LAS_Sim.Blocks.BaseAssemblyTwoPort.inp_a_19
+md:LAS_Sim.Blocks.BaseAssemblyTwoPort.inp_a_19 rdf:type owl:NamedIndividual ,
+                                                        <http://modelica_example/LAS_Sim/Interfaces/AssemblyBatch_Flow> ;
+                                               dl:hasConstantPart md:LAS_Sim.Interfaces.AssemblyBatch_Flow.batchData_21 ,
+                                                                  md:LAS_Sim.Interfaces.AssemblyBatch_Flow.sincData_20 .
+
+
+###  http://modelica_example/LAS_Sim.Blocks.BaseAssemblyTwoPort.inp_a_37
+md:LAS_Sim.Blocks.BaseAssemblyTwoPort.inp_a_37 rdf:type owl:NamedIndividual ,
+                                                        <http://modelica_example/LAS_Sim/Interfaces/AssemblyBatch_Flow> ;
+                                               dl:hasConstantPart md:LAS_Sim.Interfaces.AssemblyBatch_Flow.batchData_39 ,
+                                                                  md:LAS_Sim.Interfaces.AssemblyBatch_Flow.sincData_38 .
+
+
+###  http://modelica_example/LAS_Sim.Blocks.BaseAssemblyTwoPort.inp_a_66
+md:LAS_Sim.Blocks.BaseAssemblyTwoPort.inp_a_66 rdf:type owl:NamedIndividual ,
+                                                        <http://modelica_example/LAS_Sim/Interfaces/AssemblyBatch_Flow> ;
+                                               dl:hasConstantPart md:LAS_Sim.Interfaces.AssemblyBatch_Flow.batchData_68 ,
+                                                                  md:LAS_Sim.Interfaces.AssemblyBatch_Flow.sincData_67 .
+
+
+###  http://modelica_example/LAS_Sim.Blocks.BaseAssemblyTwoPort.inp_a_76
+md:LAS_Sim.Blocks.BaseAssemblyTwoPort.inp_a_76 rdf:type owl:NamedIndividual ,
+                                                        <http://modelica_example/LAS_Sim/Interfaces/AssemblyBatch_Flow> ;
+                                               dl:hasConstantPart md:LAS_Sim.Interfaces.AssemblyBatch_Flow.batchData_78 ,
+                                                                  md:LAS_Sim.Interfaces.AssemblyBatch_Flow.sincData_77 .
+
+
+###  http://modelica_example/LAS_Sim.Blocks.BaseAssemblyTwoPort.inp_a_9
+md:LAS_Sim.Blocks.BaseAssemblyTwoPort.inp_a_9 rdf:type owl:NamedIndividual ,
+                                                       <http://modelica_example/LAS_Sim/Interfaces/AssemblyBatch_Flow> ;
+                                              dl:hasConstantPart md:LAS_Sim.Interfaces.AssemblyBatch_Flow.batchData_11 ,
+                                                                 md:LAS_Sim.Interfaces.AssemblyBatch_Flow.sincData_10 .
+
+
+###  http://modelica_example/LAS_Sim.Blocks.BaseAssemblyTwoPort.inp_a_94
+md:LAS_Sim.Blocks.BaseAssemblyTwoPort.inp_a_94 rdf:type owl:NamedIndividual ,
+                                                        <http://modelica_example/LAS_Sim/Interfaces/AssemblyBatch_Flow> ;
+                                               dl:hasConstantPart md:LAS_Sim.Interfaces.AssemblyBatch_Flow.batchData_96 ,
+                                                                  md:LAS_Sim.Interfaces.AssemblyBatch_Flow.sincData_95 .
+
+
+###  http://modelica_example/LAS_Sim.Blocks.BasePartOnePort.outp_p_112
+md:LAS_Sim.Blocks.BasePartOnePort.outp_p_112 rdf:type owl:NamedIndividual ,
+                                                      <http://modelica_example/LAS_Sim/Interfaces/PartBatch_Flow> ;
+                                             dl:hasConstantPart md:LAS_Sim.Interfaces.PartBatch_Flow.batchData_114 ,
+                                                                md:LAS_Sim.Interfaces.PartBatch_Flow.sincData_113 .
+
+
+###  http://modelica_example/LAS_Sim.Blocks.BasePartOnePort.outp_p_24
+md:LAS_Sim.Blocks.BasePartOnePort.outp_p_24 rdf:type owl:NamedIndividual ,
+                                                     <http://modelica_example/LAS_Sim/Interfaces/PartBatch_Flow> ;
+                                            dl:hasConstantPart md:LAS_Sim.Interfaces.PartBatch_Flow.batchData_26 ,
+                                                               md:LAS_Sim.Interfaces.PartBatch_Flow.sincData_25 .
+
+
+###  http://modelica_example/LAS_Sim.Blocks.BasePartOnePort.outp_p_57
+md:LAS_Sim.Blocks.BasePartOnePort.outp_p_57 rdf:type owl:NamedIndividual ,
+                                                     <http://modelica_example/LAS_Sim/Interfaces/PartBatch_Flow> ;
+                                            dl:hasConstantPart md:LAS_Sim.Interfaces.PartBatch_Flow.batchData_59 ,
+                                                               md:LAS_Sim.Interfaces.PartBatch_Flow.sincData_58 .
+
+
+###  http://modelica_example/LAS_Sim.Blocks.BasePartOnePort.outp_p_81
+md:LAS_Sim.Blocks.BasePartOnePort.outp_p_81 rdf:type owl:NamedIndividual ,
+                                                     <http://modelica_example/LAS_Sim/Interfaces/PartBatch_Flow> ;
+                                            dl:hasConstantPart md:LAS_Sim.Interfaces.PartBatch_Flow.batchData_83 ,
+                                                               md:LAS_Sim.Interfaces.PartBatch_Flow.sincData_82 .
+
+
+###  http://modelica_example/LAS_Sim.Blocks.BasePartTwoPort.inp_p_28
+md:LAS_Sim.Blocks.BasePartTwoPort.inp_p_28 rdf:type owl:NamedIndividual ,
+                                                    <http://modelica_example/LAS_Sim/Interfaces/PartBatch_Flow> ;
+                                           dl:hasConstantPart md:LAS_Sim.Interfaces.PartBatch_Flow.batchData_30 ,
+                                                              md:LAS_Sim.Interfaces.PartBatch_Flow.sincData_29 .
+
+
+###  http://modelica_example/LAS_Sim.Blocks.BasePartTwoPort.inp_p_85
+md:LAS_Sim.Blocks.BasePartTwoPort.inp_p_85 rdf:type owl:NamedIndividual ,
+                                                    <http://modelica_example/LAS_Sim/Interfaces/PartBatch_Flow> ;
+                                           dl:hasConstantPart md:LAS_Sim.Interfaces.PartBatch_Flow.batchData_87 ,
+                                                              md:LAS_Sim.Interfaces.PartBatch_Flow.sincData_86 .
+
+
+###  http://modelica_example/LAS_Sim.Blocks.Control_Stations.CG_Service_158
+md:LAS_Sim.Blocks.Control_Stations.CG_Service_158 rdf:type owl:NamedIndividual ,
+                                                           <http://modelica_example/LAS_Sim/Blocks/Graph_Control> .
+
+
+###  http://modelica_example/LAS_Sim.Blocks.Control_Stations.inp_c_151
+md:LAS_Sim.Blocks.Control_Stations.inp_c_151 rdf:type owl:NamedIndividual ,
+                                                      <http://modelica_example/LAS_Sim/Interfaces/Control_Station> .
+
+
+###  http://modelica_example/LAS_Sim.Blocks.Control_Stations.stat_maintenance_155
+md:LAS_Sim.Blocks.Control_Stations.stat_maintenance_155 rdf:type owl:NamedIndividual ,
+                                                                 <http://modelica_example/LAS_Sim/Blocks/StatisticAnalysis> .
+
+
+###  http://modelica_example/LAS_Sim.Blocks.Control_Stations.stat_meassure_156
+md:LAS_Sim.Blocks.Control_Stations.stat_meassure_156 rdf:type owl:NamedIndividual ,
+                                                              <http://modelica_example/LAS_Sim/Blocks/StatisticAnalysis> .
+
+
+###  http://modelica_example/LAS_Sim.Blocks.Control_Stations.stat_repair_153
+md:LAS_Sim.Blocks.Control_Stations.stat_repair_153 rdf:type owl:NamedIndividual ,
+                                                            <http://modelica_example/LAS_Sim/Blocks/StatisticAnalysis> .
+
+
+###  http://modelica_example/LAS_Sim.Blocks.Control_Stations.stat_service_152
+md:LAS_Sim.Blocks.Control_Stations.stat_service_152 rdf:type owl:NamedIndividual ,
+                                                             <http://modelica_example/LAS_Sim/Blocks/StatisticAnalysis> .
+
+
+###  http://modelica_example/LAS_Sim.Blocks.Control_Stations.stat_setup_154
+md:LAS_Sim.Blocks.Control_Stations.stat_setup_154 rdf:type owl:NamedIndividual ,
+                                                           <http://modelica_example/LAS_Sim/Blocks/StatisticAnalysis> .
+
+
+###  http://modelica_example/LAS_Sim.Blocks.Control_Stations.view_157
+md:LAS_Sim.Blocks.Control_Stations.view_157 rdf:type owl:NamedIndividual ,
+                                                     <http://modelica_example/LAS_Sim/Blocks/SignalView> .
+
+
+###  http://modelica_example/LAS_Sim.Blocks.Final.inp_a_160
+md:LAS_Sim.Blocks.Final.inp_a_160 rdf:type owl:NamedIndividual ,
+                                           <http://modelica_example/LAS_Sim/Interfaces/AssemblyBatch_Flow> ;
+                                  dl:hasConstantPart md:LAS_Sim.Interfaces.AssemblyBatch_Flow.batchData_162 ,
+                                                     md:LAS_Sim.Interfaces.AssemblyBatch_Flow.sincData_161 .
+
+
+###  http://modelica_example/LAS_Sim.Blocks.Inspection_Station.assembly_Store_131
+md:LAS_Sim.Blocks.Inspection_Station.assembly_Store_131 rdf:type owl:NamedIndividual ,
+                                                                 <http://modelica_example/LAS_Sim/Blocks/Assembly_Store> ;
+                                                        dl:hasConstantPart md:LAS_Sim.Blocks.BaseAssemblyOnePort.outp_a_132 ,
+                                                                           md:LAS_Sim.Blocks.BaseAssemblyTwoPort.inp_a_136 .
+
+
+###  http://modelica_example/LAS_Sim.Blocks.Inspection_Station.inp_c_130
+md:LAS_Sim.Blocks.Inspection_Station.inp_c_130 rdf:type owl:NamedIndividual ,
+                                                        <http://modelica_example/LAS_Sim/Interfaces/Control_Station> .
+
+
+###  http://modelica_example/LAS_Sim.Blocks.Inspection_Station.inspection_step_140
+md:LAS_Sim.Blocks.Inspection_Station.inspection_step_140 rdf:type owl:NamedIndividual ,
+                                                                  <http://modelica_example/LAS_Sim/Blocks/Inspection_Step> ;
+                                                         dl:hasConstantPart md:LAS_Sim.Blocks.BaseAssemblyOnePort.outp_a_141 ,
+                                                                            md:LAS_Sim.Blocks.BaseAssemblyTwoPort.inp_a_145 ,
+                                                                            md:LAS_Sim.Blocks.Inspection_Step.inp_c_149 .
+
+
+###  http://modelica_example/LAS_Sim.Blocks.Inspection_Step.inp_c_149
+md:LAS_Sim.Blocks.Inspection_Step.inp_c_149 rdf:type owl:NamedIndividual ,
+                                                     <http://modelica_example/LAS_Sim/Interfaces/Control_Station> .
+
+
+###  http://modelica_example/LAS_Sim.Examples.TwoAssembly_OneInspection_Station_Control.ass_generator_116
+md:LAS_Sim.Examples.TwoAssembly_OneInspection_Station_Control.ass_generator_116 rdf:type owl:NamedIndividual ,
+                                                                                         <http://modelica_example/LAS_Sim/Blocks/Assembly_Generator> ;
+                                                                                dl:hasConstantPart md:LAS_Sim.Blocks.BaseAssemblyOnePort.outp_a_117 .
+
+
+###  http://modelica_example/LAS_Sim.Examples.TwoAssembly_OneInspection_Station_Control.assembly_1_4
+md:LAS_Sim.Examples.TwoAssembly_OneInspection_Station_Control.assembly_1_4 rdf:type owl:NamedIndividual ,
+                                                                                    <http://modelica_example/LAS_Sim/Blocks/Assembly_Station> ;
+                                                                           dl:hasConstantPart md:LAS_Sim.Blocks.Assembly_Station.assembly_Step_32 ,
+                                                                                              md:LAS_Sim.Blocks.Assembly_Station.assembly_Store_14 ,
+                                                                                              md:LAS_Sim.Blocks.Assembly_Station.inp_c_13 ,
+                                                                                              md:LAS_Sim.Blocks.Assembly_Station.part_Generator_56 ,
+                                                                                              md:LAS_Sim.Blocks.Assembly_Station.part_Store_23 ,
+                                                                                              md:LAS_Sim.Blocks.BaseAssemblyOnePort.outp_a_5 ,
+                                                                                              md:LAS_Sim.Blocks.BaseAssemblyTwoPort.inp_a_9 .
+
+
+###  http://modelica_example/LAS_Sim.Examples.TwoAssembly_OneInspection_Station_Control.assembly_2_61
+md:LAS_Sim.Examples.TwoAssembly_OneInspection_Station_Control.assembly_2_61 rdf:type owl:NamedIndividual ,
+                                                                                     <http://modelica_example/LAS_Sim/Blocks/Assembly_Station> ;
+                                                                            dl:hasConstantPart md:LAS_Sim.Blocks.Assembly_Station.assembly_Step_89 ,
+                                                                                               md:LAS_Sim.Blocks.Assembly_Station.assembly_Store_71 ,
+                                                                                               md:LAS_Sim.Blocks.Assembly_Station.inp_c_70 ,
+                                                                                               md:LAS_Sim.Blocks.Assembly_Station.part_Generator_111 ,
+                                                                                               md:LAS_Sim.Blocks.Assembly_Station.part_Store_80 ,
+                                                                                               md:LAS_Sim.Blocks.BaseAssemblyOnePort.outp_a_62 ,
+                                                                                               md:LAS_Sim.Blocks.BaseAssemblyTwoPort.inp_a_66 .
+
+
+###  http://modelica_example/LAS_Sim.Examples.TwoAssembly_OneInspection_Station_Control.control_150
+md:LAS_Sim.Examples.TwoAssembly_OneInspection_Station_Control.control_150 rdf:type owl:NamedIndividual ,
+                                                                                   <http://modelica_example/LAS_Sim/Blocks/Control_Stations> ;
+                                                                          dl:hasConstantPart md:LAS_Sim.Blocks.Control_Stations.CG_Service_158 ,
+                                                                                             md:LAS_Sim.Blocks.Control_Stations.inp_c_151 ,
+                                                                                             md:LAS_Sim.Blocks.Control_Stations.stat_maintenance_155 ,
+                                                                                             md:LAS_Sim.Blocks.Control_Stations.stat_meassure_156 ,
+                                                                                             md:LAS_Sim.Blocks.Control_Stations.stat_repair_153 ,
+                                                                                             md:LAS_Sim.Blocks.Control_Stations.stat_service_152 ,
+                                                                                             md:LAS_Sim.Blocks.Control_Stations.stat_setup_154 ,
+                                                                                             md:LAS_Sim.Blocks.Control_Stations.view_157 .
+
+
+###  http://modelica_example/LAS_Sim.Examples.TwoAssembly_OneInspection_Station_Control.data_1
+md:LAS_Sim.Examples.TwoAssembly_OneInspection_Station_Control.data_1 rdf:type owl:NamedIndividual ,
+                                                                              <http://modelica_example/LAS_Sim/Blocks/Data_Tables_LAS> .
+
+
+###  http://modelica_example/LAS_Sim.Examples.TwoAssembly_OneInspection_Station_Control.evolution_3
+md:LAS_Sim.Examples.TwoAssembly_OneInspection_Station_Control.evolution_3 rdf:type owl:NamedIndividual ,
+                                                                                   <http://modelica_example/LAS_Sim/Blocks/Data_evolution_LAS> .
+
+
+###  http://modelica_example/LAS_Sim.Examples.TwoAssembly_OneInspection_Station_Control.flow_end_159
+md:LAS_Sim.Examples.TwoAssembly_OneInspection_Station_Control.flow_end_159 rdf:type owl:NamedIndividual ,
+                                                                                    <http://modelica_example/LAS_Sim/Blocks/Final> ;
+                                                                           dl:hasConstantPart md:LAS_Sim.Blocks.Final.inp_a_160 .
+
+
+###  http://modelica_example/LAS_Sim.Examples.TwoAssembly_OneInspection_Station_Control.inspection_1_121
+md:LAS_Sim.Examples.TwoAssembly_OneInspection_Station_Control.inspection_1_121 rdf:type owl:NamedIndividual ,
+                                                                                        <http://modelica_example/LAS_Sim/Blocks/Inspection_Station> ;
+                                                                               dl:hasConstantPart md:LAS_Sim.Blocks.BaseAssemblyOnePort.outp_a_122 ,
+                                                                                                  md:LAS_Sim.Blocks.BaseAssemblyTwoPort.inp_a_126 ,
+                                                                                                  md:LAS_Sim.Blocks.Inspection_Station.assembly_Store_131 ,
+                                                                                                  md:LAS_Sim.Blocks.Inspection_Station.inp_c_130 ,
+                                                                                                  md:LAS_Sim.Blocks.Inspection_Station.inspection_step_140 .
+
+
+###  http://modelica_example/LAS_Sim.Examples.TwoAssembly_OneInspection_Station_Control_0
+md:LAS_Sim.Examples.TwoAssembly_OneInspection_Station_Control_0 rdf:type owl:NamedIndividual ,
+                                                                         <http://modelica_example/LAS_Sim/Examples/TwoAssembly_OneInspection_Station_Control> ;
+                                                                dl:hasConstantPart md:LAS_Sim.Examples.TwoAssembly_OneInspection_Station_Control.ass_generator_116 ,
+                                                                                   md:LAS_Sim.Examples.TwoAssembly_OneInspection_Station_Control.assembly_1_4 ,
+                                                                                   md:LAS_Sim.Examples.TwoAssembly_OneInspection_Station_Control.assembly_2_61 ,
+                                                                                   md:LAS_Sim.Examples.TwoAssembly_OneInspection_Station_Control.control_150 ,
+                                                                                   md:LAS_Sim.Examples.TwoAssembly_OneInspection_Station_Control.data_1 ,
+                                                                                   md:LAS_Sim.Examples.TwoAssembly_OneInspection_Station_Control.evolution_3 ,
+                                                                                   md:LAS_Sim.Examples.TwoAssembly_OneInspection_Station_Control.flow_end_159 ,
+                                                                                   md:LAS_Sim.Examples.TwoAssembly_OneInspection_Station_Control.inspection_1_121 .
+
+
+###  http://modelica_example/LAS_Sim.Interfaces.AssemblyBatch_Flow.batchData_11
+md:LAS_Sim.Interfaces.AssemblyBatch_Flow.batchData_11 rdf:type owl:NamedIndividual ,
+                                                               <http://modelica_example/LAS_Sim/Types/UnitaryAssemblyBatch> ;
+                                                      dl:hasConstantPart md:LAS_Sim.Types.UnitaryAssemblyBatch.assembly_12 .
+
+
+###  http://modelica_example/LAS_Sim.Interfaces.AssemblyBatch_Flow.batchData_119
+md:LAS_Sim.Interfaces.AssemblyBatch_Flow.batchData_119 rdf:type owl:NamedIndividual ,
+                                                                <http://modelica_example/LAS_Sim/Types/UnitaryAssemblyBatch> ;
+                                                       dl:hasConstantPart md:LAS_Sim.Types.UnitaryAssemblyBatch.assembly_120 .
+
+
+###  http://modelica_example/LAS_Sim.Interfaces.AssemblyBatch_Flow.batchData_124
+md:LAS_Sim.Interfaces.AssemblyBatch_Flow.batchData_124 rdf:type owl:NamedIndividual ,
+                                                                <http://modelica_example/LAS_Sim/Types/UnitaryAssemblyBatch> ;
+                                                       dl:hasConstantPart md:LAS_Sim.Types.UnitaryAssemblyBatch.assembly_125 .
+
+
+###  http://modelica_example/LAS_Sim.Interfaces.AssemblyBatch_Flow.batchData_128
+md:LAS_Sim.Interfaces.AssemblyBatch_Flow.batchData_128 rdf:type owl:NamedIndividual ,
+                                                                <http://modelica_example/LAS_Sim/Types/UnitaryAssemblyBatch> ;
+                                                       dl:hasConstantPart md:LAS_Sim.Types.UnitaryAssemblyBatch.assembly_129 .
+
+
+###  http://modelica_example/LAS_Sim.Interfaces.AssemblyBatch_Flow.batchData_134
+md:LAS_Sim.Interfaces.AssemblyBatch_Flow.batchData_134 rdf:type owl:NamedIndividual ,
+                                                                <http://modelica_example/LAS_Sim/Types/UnitaryAssemblyBatch> ;
+                                                       dl:hasConstantPart md:LAS_Sim.Types.UnitaryAssemblyBatch.assembly_135 .
+
+
+###  http://modelica_example/LAS_Sim.Interfaces.AssemblyBatch_Flow.batchData_138
+md:LAS_Sim.Interfaces.AssemblyBatch_Flow.batchData_138 rdf:type owl:NamedIndividual ,
+                                                                <http://modelica_example/LAS_Sim/Types/UnitaryAssemblyBatch> ;
+                                                       dl:hasConstantPart md:LAS_Sim.Types.UnitaryAssemblyBatch.assembly_139 .
+
+
+###  http://modelica_example/LAS_Sim.Interfaces.AssemblyBatch_Flow.batchData_143
+md:LAS_Sim.Interfaces.AssemblyBatch_Flow.batchData_143 rdf:type owl:NamedIndividual ,
+                                                                <http://modelica_example/LAS_Sim/Types/UnitaryAssemblyBatch> ;
+                                                       dl:hasConstantPart md:LAS_Sim.Types.UnitaryAssemblyBatch.assembly_144 .
+
+
+###  http://modelica_example/LAS_Sim.Interfaces.AssemblyBatch_Flow.batchData_147
+md:LAS_Sim.Interfaces.AssemblyBatch_Flow.batchData_147 rdf:type owl:NamedIndividual ,
+                                                                <http://modelica_example/LAS_Sim/Types/UnitaryAssemblyBatch> ;
+                                                       dl:hasConstantPart md:LAS_Sim.Types.UnitaryAssemblyBatch.assembly_148 .
+
+
+###  http://modelica_example/LAS_Sim.Interfaces.AssemblyBatch_Flow.batchData_162
+md:LAS_Sim.Interfaces.AssemblyBatch_Flow.batchData_162 rdf:type owl:NamedIndividual ,
+                                                                <http://modelica_example/LAS_Sim/Types/UnitaryAssemblyBatch> ;
+                                                       dl:hasConstantPart md:LAS_Sim.Types.UnitaryAssemblyBatch.assembly_163 .
+
+
+###  http://modelica_example/LAS_Sim.Interfaces.AssemblyBatch_Flow.batchData_17
+md:LAS_Sim.Interfaces.AssemblyBatch_Flow.batchData_17 rdf:type owl:NamedIndividual ,
+                                                               <http://modelica_example/LAS_Sim/Types/UnitaryAssemblyBatch> ;
+                                                      dl:hasConstantPart md:LAS_Sim.Types.UnitaryAssemblyBatch.assembly_18 .
+
+
+###  http://modelica_example/LAS_Sim.Interfaces.AssemblyBatch_Flow.batchData_21
+md:LAS_Sim.Interfaces.AssemblyBatch_Flow.batchData_21 rdf:type owl:NamedIndividual ,
+                                                               <http://modelica_example/LAS_Sim/Types/UnitaryAssemblyBatch> ;
+                                                      dl:hasConstantPart md:LAS_Sim.Types.UnitaryAssemblyBatch.assembly_22 .
+
+
+###  http://modelica_example/LAS_Sim.Interfaces.AssemblyBatch_Flow.batchData_35
+md:LAS_Sim.Interfaces.AssemblyBatch_Flow.batchData_35 rdf:type owl:NamedIndividual ,
+                                                               <http://modelica_example/LAS_Sim/Types/UnitaryAssemblyBatch> ;
+                                                      dl:hasConstantPart md:LAS_Sim.Types.UnitaryAssemblyBatch.assembly_36 .
+
+
+###  http://modelica_example/LAS_Sim.Interfaces.AssemblyBatch_Flow.batchData_39
+md:LAS_Sim.Interfaces.AssemblyBatch_Flow.batchData_39 rdf:type owl:NamedIndividual ,
+                                                               <http://modelica_example/LAS_Sim/Types/UnitaryAssemblyBatch> ;
+                                                      dl:hasConstantPart md:LAS_Sim.Types.UnitaryAssemblyBatch.assembly_40 .
+
+
+###  http://modelica_example/LAS_Sim.Interfaces.AssemblyBatch_Flow.batchData_64
+md:LAS_Sim.Interfaces.AssemblyBatch_Flow.batchData_64 rdf:type owl:NamedIndividual ,
+                                                               <http://modelica_example/LAS_Sim/Types/UnitaryAssemblyBatch> ;
+                                                      dl:hasConstantPart md:LAS_Sim.Types.UnitaryAssemblyBatch.assembly_65 .
+
+
+###  http://modelica_example/LAS_Sim.Interfaces.AssemblyBatch_Flow.batchData_68
+md:LAS_Sim.Interfaces.AssemblyBatch_Flow.batchData_68 rdf:type owl:NamedIndividual ,
+                                                               <http://modelica_example/LAS_Sim/Types/UnitaryAssemblyBatch> ;
+                                                      dl:hasConstantPart md:LAS_Sim.Types.UnitaryAssemblyBatch.assembly_69 .
+
+
+###  http://modelica_example/LAS_Sim.Interfaces.AssemblyBatch_Flow.batchData_7
+md:LAS_Sim.Interfaces.AssemblyBatch_Flow.batchData_7 rdf:type owl:NamedIndividual ,
+                                                              <http://modelica_example/LAS_Sim/Types/UnitaryAssemblyBatch> ;
+                                                     dl:hasConstantPart md:LAS_Sim.Types.UnitaryAssemblyBatch.assembly_8 .
+
+
+###  http://modelica_example/LAS_Sim.Interfaces.AssemblyBatch_Flow.batchData_74
+md:LAS_Sim.Interfaces.AssemblyBatch_Flow.batchData_74 rdf:type owl:NamedIndividual ,
+                                                               <http://modelica_example/LAS_Sim/Types/UnitaryAssemblyBatch> ;
+                                                      dl:hasConstantPart md:LAS_Sim.Types.UnitaryAssemblyBatch.assembly_75 .
+
+
+###  http://modelica_example/LAS_Sim.Interfaces.AssemblyBatch_Flow.batchData_78
+md:LAS_Sim.Interfaces.AssemblyBatch_Flow.batchData_78 rdf:type owl:NamedIndividual ,
+                                                               <http://modelica_example/LAS_Sim/Types/UnitaryAssemblyBatch> ;
+                                                      dl:hasConstantPart md:LAS_Sim.Types.UnitaryAssemblyBatch.assembly_79 .
+
+
+###  http://modelica_example/LAS_Sim.Interfaces.AssemblyBatch_Flow.batchData_92
+md:LAS_Sim.Interfaces.AssemblyBatch_Flow.batchData_92 rdf:type owl:NamedIndividual ,
+                                                               <http://modelica_example/LAS_Sim/Types/UnitaryAssemblyBatch> ;
+                                                      dl:hasConstantPart md:LAS_Sim.Types.UnitaryAssemblyBatch.assembly_93 .
+
+
+###  http://modelica_example/LAS_Sim.Interfaces.AssemblyBatch_Flow.batchData_96
+md:LAS_Sim.Interfaces.AssemblyBatch_Flow.batchData_96 rdf:type owl:NamedIndividual ,
+                                                               <http://modelica_example/LAS_Sim/Types/UnitaryAssemblyBatch> ;
+                                                      dl:hasConstantPart md:LAS_Sim.Types.UnitaryAssemblyBatch.assembly_97 .
+
+
+###  http://modelica_example/LAS_Sim.Interfaces.AssemblyBatch_Flow.sincData_10
+md:LAS_Sim.Interfaces.AssemblyBatch_Flow.sincData_10 rdf:type owl:NamedIndividual ,
+                                                              <http://modelica_example/LAS_Sim/Types/SincronizationData> .
+
+
+###  http://modelica_example/LAS_Sim.Interfaces.AssemblyBatch_Flow.sincData_118
+md:LAS_Sim.Interfaces.AssemblyBatch_Flow.sincData_118 rdf:type owl:NamedIndividual ,
+                                                               <http://modelica_example/LAS_Sim/Types/SincronizationData> .
+
+
+###  http://modelica_example/LAS_Sim.Interfaces.AssemblyBatch_Flow.sincData_123
+md:LAS_Sim.Interfaces.AssemblyBatch_Flow.sincData_123 rdf:type owl:NamedIndividual ,
+                                                               <http://modelica_example/LAS_Sim/Types/SincronizationData> .
+
+
+###  http://modelica_example/LAS_Sim.Interfaces.AssemblyBatch_Flow.sincData_127
+md:LAS_Sim.Interfaces.AssemblyBatch_Flow.sincData_127 rdf:type owl:NamedIndividual ,
+                                                               <http://modelica_example/LAS_Sim/Types/SincronizationData> .
+
+
+###  http://modelica_example/LAS_Sim.Interfaces.AssemblyBatch_Flow.sincData_133
+md:LAS_Sim.Interfaces.AssemblyBatch_Flow.sincData_133 rdf:type owl:NamedIndividual ,
+                                                               <http://modelica_example/LAS_Sim/Types/SincronizationData> .
+
+
+###  http://modelica_example/LAS_Sim.Interfaces.AssemblyBatch_Flow.sincData_137
+md:LAS_Sim.Interfaces.AssemblyBatch_Flow.sincData_137 rdf:type owl:NamedIndividual ,
+                                                               <http://modelica_example/LAS_Sim/Types/SincronizationData> .
+
+
+###  http://modelica_example/LAS_Sim.Interfaces.AssemblyBatch_Flow.sincData_142
+md:LAS_Sim.Interfaces.AssemblyBatch_Flow.sincData_142 rdf:type owl:NamedIndividual ,
+                                                               <http://modelica_example/LAS_Sim/Types/SincronizationData> .
+
+
+###  http://modelica_example/LAS_Sim.Interfaces.AssemblyBatch_Flow.sincData_146
+md:LAS_Sim.Interfaces.AssemblyBatch_Flow.sincData_146 rdf:type owl:NamedIndividual ,
+                                                               <http://modelica_example/LAS_Sim/Types/SincronizationData> .
+
+
+###  http://modelica_example/LAS_Sim.Interfaces.AssemblyBatch_Flow.sincData_16
+md:LAS_Sim.Interfaces.AssemblyBatch_Flow.sincData_16 rdf:type owl:NamedIndividual ,
+                                                              <http://modelica_example/LAS_Sim/Types/SincronizationData> .
+
+
+###  http://modelica_example/LAS_Sim.Interfaces.AssemblyBatch_Flow.sincData_161
+md:LAS_Sim.Interfaces.AssemblyBatch_Flow.sincData_161 rdf:type owl:NamedIndividual ,
+                                                               <http://modelica_example/LAS_Sim/Types/SincronizationData> .
+
+
+###  http://modelica_example/LAS_Sim.Interfaces.AssemblyBatch_Flow.sincData_20
+md:LAS_Sim.Interfaces.AssemblyBatch_Flow.sincData_20 rdf:type owl:NamedIndividual ,
+                                                              <http://modelica_example/LAS_Sim/Types/SincronizationData> .
+
+
+###  http://modelica_example/LAS_Sim.Interfaces.AssemblyBatch_Flow.sincData_34
+md:LAS_Sim.Interfaces.AssemblyBatch_Flow.sincData_34 rdf:type owl:NamedIndividual ,
+                                                              <http://modelica_example/LAS_Sim/Types/SincronizationData> .
+
+
+###  http://modelica_example/LAS_Sim.Interfaces.AssemblyBatch_Flow.sincData_38
+md:LAS_Sim.Interfaces.AssemblyBatch_Flow.sincData_38 rdf:type owl:NamedIndividual ,
+                                                              <http://modelica_example/LAS_Sim/Types/SincronizationData> .
+
+
+###  http://modelica_example/LAS_Sim.Interfaces.AssemblyBatch_Flow.sincData_6
+md:LAS_Sim.Interfaces.AssemblyBatch_Flow.sincData_6 rdf:type owl:NamedIndividual ,
+                                                             <http://modelica_example/LAS_Sim/Types/SincronizationData> .
+
+
+###  http://modelica_example/LAS_Sim.Interfaces.AssemblyBatch_Flow.sincData_63
+md:LAS_Sim.Interfaces.AssemblyBatch_Flow.sincData_63 rdf:type owl:NamedIndividual ,
+                                                              <http://modelica_example/LAS_Sim/Types/SincronizationData> .
+
+
+###  http://modelica_example/LAS_Sim.Interfaces.AssemblyBatch_Flow.sincData_67
+md:LAS_Sim.Interfaces.AssemblyBatch_Flow.sincData_67 rdf:type owl:NamedIndividual ,
+                                                              <http://modelica_example/LAS_Sim/Types/SincronizationData> .
+
+
+###  http://modelica_example/LAS_Sim.Interfaces.AssemblyBatch_Flow.sincData_73
+md:LAS_Sim.Interfaces.AssemblyBatch_Flow.sincData_73 rdf:type owl:NamedIndividual ,
+                                                              <http://modelica_example/LAS_Sim/Types/SincronizationData> .
+
+
+###  http://modelica_example/LAS_Sim.Interfaces.AssemblyBatch_Flow.sincData_77
+md:LAS_Sim.Interfaces.AssemblyBatch_Flow.sincData_77 rdf:type owl:NamedIndividual ,
+                                                              <http://modelica_example/LAS_Sim/Types/SincronizationData> .
+
+
+###  http://modelica_example/LAS_Sim.Interfaces.AssemblyBatch_Flow.sincData_91
+md:LAS_Sim.Interfaces.AssemblyBatch_Flow.sincData_91 rdf:type owl:NamedIndividual ,
+                                                              <http://modelica_example/LAS_Sim/Types/SincronizationData> .
+
+
+###  http://modelica_example/LAS_Sim.Interfaces.AssemblyBatch_Flow.sincData_95
+md:LAS_Sim.Interfaces.AssemblyBatch_Flow.sincData_95 rdf:type owl:NamedIndividual ,
+                                                              <http://modelica_example/LAS_Sim/Types/SincronizationData> .
+
+
+###  http://modelica_example/LAS_Sim.Interfaces.PartBatch_Flow.batchData_100
+md:LAS_Sim.Interfaces.PartBatch_Flow.batchData_100 rdf:type owl:NamedIndividual ,
+                                                            <http://modelica_example/LAS_Sim/Types/UnitaryPartBatch> ;
+                                                   dl:hasConstantPart md:LAS_Sim.Types.UnitaryPartBatch.part_101 .
+
+
+###  http://modelica_example/LAS_Sim.Interfaces.PartBatch_Flow.batchData_114
+md:LAS_Sim.Interfaces.PartBatch_Flow.batchData_114 rdf:type owl:NamedIndividual ,
+                                                            <http://modelica_example/LAS_Sim/Types/UnitaryPartBatch> ;
+                                                   dl:hasConstantPart md:LAS_Sim.Types.UnitaryPartBatch.part_115 .
+
+
+###  http://modelica_example/LAS_Sim.Interfaces.PartBatch_Flow.batchData_26
+md:LAS_Sim.Interfaces.PartBatch_Flow.batchData_26 rdf:type owl:NamedIndividual ,
+                                                           <http://modelica_example/LAS_Sim/Types/UnitaryPartBatch> ;
+                                                  dl:hasConstantPart md:LAS_Sim.Types.UnitaryPartBatch.part_27 .
+
+
+###  http://modelica_example/LAS_Sim.Interfaces.PartBatch_Flow.batchData_30
+md:LAS_Sim.Interfaces.PartBatch_Flow.batchData_30 rdf:type owl:NamedIndividual ,
+                                                           <http://modelica_example/LAS_Sim/Types/UnitaryPartBatch> ;
+                                                  dl:hasConstantPart md:LAS_Sim.Types.UnitaryPartBatch.part_31 .
+
+
+###  http://modelica_example/LAS_Sim.Interfaces.PartBatch_Flow.batchData_43
+md:LAS_Sim.Interfaces.PartBatch_Flow.batchData_43 rdf:type owl:NamedIndividual ,
+                                                           <http://modelica_example/LAS_Sim/Types/UnitaryPartBatch> ;
+                                                  dl:hasConstantPart md:LAS_Sim.Types.UnitaryPartBatch.part_44 .
+
+
+###  http://modelica_example/LAS_Sim.Interfaces.PartBatch_Flow.batchData_59
+md:LAS_Sim.Interfaces.PartBatch_Flow.batchData_59 rdf:type owl:NamedIndividual ,
+                                                           <http://modelica_example/LAS_Sim/Types/UnitaryPartBatch> ;
+                                                  dl:hasConstantPart md:LAS_Sim.Types.UnitaryPartBatch.part_60 .
+
+
+###  http://modelica_example/LAS_Sim.Interfaces.PartBatch_Flow.batchData_83
+md:LAS_Sim.Interfaces.PartBatch_Flow.batchData_83 rdf:type owl:NamedIndividual ,
+                                                           <http://modelica_example/LAS_Sim/Types/UnitaryPartBatch> ;
+                                                  dl:hasConstantPart md:LAS_Sim.Types.UnitaryPartBatch.part_84 .
+
+
+###  http://modelica_example/LAS_Sim.Interfaces.PartBatch_Flow.batchData_87
+md:LAS_Sim.Interfaces.PartBatch_Flow.batchData_87 rdf:type owl:NamedIndividual ,
+                                                           <http://modelica_example/LAS_Sim/Types/UnitaryPartBatch> ;
+                                                  dl:hasConstantPart md:LAS_Sim.Types.UnitaryPartBatch.part_88 .
+
+
+###  http://modelica_example/LAS_Sim.Interfaces.PartBatch_Flow.sincData_113
+md:LAS_Sim.Interfaces.PartBatch_Flow.sincData_113 rdf:type owl:NamedIndividual ,
+                                                           <http://modelica_example/LAS_Sim/Types/SincronizationData> .
+
+
+###  http://modelica_example/LAS_Sim.Interfaces.PartBatch_Flow.sincData_25
+md:LAS_Sim.Interfaces.PartBatch_Flow.sincData_25 rdf:type owl:NamedIndividual ,
+                                                          <http://modelica_example/LAS_Sim/Types/SincronizationData> .
+
+
+###  http://modelica_example/LAS_Sim.Interfaces.PartBatch_Flow.sincData_29
+md:LAS_Sim.Interfaces.PartBatch_Flow.sincData_29 rdf:type owl:NamedIndividual ,
+                                                          <http://modelica_example/LAS_Sim/Types/SincronizationData> .
+
+
+###  http://modelica_example/LAS_Sim.Interfaces.PartBatch_Flow.sincData_42
+md:LAS_Sim.Interfaces.PartBatch_Flow.sincData_42 rdf:type owl:NamedIndividual ,
+                                                          <http://modelica_example/LAS_Sim/Types/SincronizationData> .
+
+
+###  http://modelica_example/LAS_Sim.Interfaces.PartBatch_Flow.sincData_58
+md:LAS_Sim.Interfaces.PartBatch_Flow.sincData_58 rdf:type owl:NamedIndividual ,
+                                                          <http://modelica_example/LAS_Sim/Types/SincronizationData> .
+
+
+###  http://modelica_example/LAS_Sim.Interfaces.PartBatch_Flow.sincData_82
+md:LAS_Sim.Interfaces.PartBatch_Flow.sincData_82 rdf:type owl:NamedIndividual ,
+                                                          <http://modelica_example/LAS_Sim/Types/SincronizationData> .
+
+
+###  http://modelica_example/LAS_Sim.Interfaces.PartBatch_Flow.sincData_86
+md:LAS_Sim.Interfaces.PartBatch_Flow.sincData_86 rdf:type owl:NamedIndividual ,
+                                                          <http://modelica_example/LAS_Sim/Types/SincronizationData> .
+
+
+###  http://modelica_example/LAS_Sim.Interfaces.PartBatch_Flow.sincData_99
+md:LAS_Sim.Interfaces.PartBatch_Flow.sincData_99 rdf:type owl:NamedIndividual ,
+                                                          <http://modelica_example/LAS_Sim/Types/SincronizationData> .
+
+
+###  http://modelica_example/LAS_Sim.Types.UnitaryAssemblyBatch.assembly_12
+md:LAS_Sim.Types.UnitaryAssemblyBatch.assembly_12 rdf:type owl:NamedIndividual ,
+                                                           <http://modelica_example/LAS_Sim/Types/AssemblyData> .
+
+
+###  http://modelica_example/LAS_Sim.Types.UnitaryAssemblyBatch.assembly_120
+md:LAS_Sim.Types.UnitaryAssemblyBatch.assembly_120 rdf:type owl:NamedIndividual ,
+                                                            <http://modelica_example/LAS_Sim/Types/AssemblyData> .
+
+
+###  http://modelica_example/LAS_Sim.Types.UnitaryAssemblyBatch.assembly_125
+md:LAS_Sim.Types.UnitaryAssemblyBatch.assembly_125 rdf:type owl:NamedIndividual ,
+                                                            <http://modelica_example/LAS_Sim/Types/AssemblyData> .
+
+
+###  http://modelica_example/LAS_Sim.Types.UnitaryAssemblyBatch.assembly_129
+md:LAS_Sim.Types.UnitaryAssemblyBatch.assembly_129 rdf:type owl:NamedIndividual ,
+                                                            <http://modelica_example/LAS_Sim/Types/AssemblyData> .
+
+
+###  http://modelica_example/LAS_Sim.Types.UnitaryAssemblyBatch.assembly_135
+md:LAS_Sim.Types.UnitaryAssemblyBatch.assembly_135 rdf:type owl:NamedIndividual ,
+                                                            <http://modelica_example/LAS_Sim/Types/AssemblyData> .
+
+
+###  http://modelica_example/LAS_Sim.Types.UnitaryAssemblyBatch.assembly_139
+md:LAS_Sim.Types.UnitaryAssemblyBatch.assembly_139 rdf:type owl:NamedIndividual ,
+                                                            <http://modelica_example/LAS_Sim/Types/AssemblyData> .
+
+
+###  http://modelica_example/LAS_Sim.Types.UnitaryAssemblyBatch.assembly_144
+md:LAS_Sim.Types.UnitaryAssemblyBatch.assembly_144 rdf:type owl:NamedIndividual ,
+                                                            <http://modelica_example/LAS_Sim/Types/AssemblyData> .
+
+
+###  http://modelica_example/LAS_Sim.Types.UnitaryAssemblyBatch.assembly_148
+md:LAS_Sim.Types.UnitaryAssemblyBatch.assembly_148 rdf:type owl:NamedIndividual ,
+                                                            <http://modelica_example/LAS_Sim/Types/AssemblyData> .
+
+
+###  http://modelica_example/LAS_Sim.Types.UnitaryAssemblyBatch.assembly_163
+md:LAS_Sim.Types.UnitaryAssemblyBatch.assembly_163 rdf:type owl:NamedIndividual ,
+                                                            <http://modelica_example/LAS_Sim/Types/AssemblyData> .
+
+
+###  http://modelica_example/LAS_Sim.Types.UnitaryAssemblyBatch.assembly_18
+md:LAS_Sim.Types.UnitaryAssemblyBatch.assembly_18 rdf:type owl:NamedIndividual ,
+                                                           <http://modelica_example/LAS_Sim/Types/AssemblyData> .
+
+
+###  http://modelica_example/LAS_Sim.Types.UnitaryAssemblyBatch.assembly_22
+md:LAS_Sim.Types.UnitaryAssemblyBatch.assembly_22 rdf:type owl:NamedIndividual ,
+                                                           <http://modelica_example/LAS_Sim/Types/AssemblyData> .
+
+
+###  http://modelica_example/LAS_Sim.Types.UnitaryAssemblyBatch.assembly_36
+md:LAS_Sim.Types.UnitaryAssemblyBatch.assembly_36 rdf:type owl:NamedIndividual ,
+                                                           <http://modelica_example/LAS_Sim/Types/AssemblyData> .
+
+
+###  http://modelica_example/LAS_Sim.Types.UnitaryAssemblyBatch.assembly_40
+md:LAS_Sim.Types.UnitaryAssemblyBatch.assembly_40 rdf:type owl:NamedIndividual ,
+                                                           <http://modelica_example/LAS_Sim/Types/AssemblyData> .
+
+
+###  http://modelica_example/LAS_Sim.Types.UnitaryAssemblyBatch.assembly_65
+md:LAS_Sim.Types.UnitaryAssemblyBatch.assembly_65 rdf:type owl:NamedIndividual ,
+                                                           <http://modelica_example/LAS_Sim/Types/AssemblyData> .
+
+
+###  http://modelica_example/LAS_Sim.Types.UnitaryAssemblyBatch.assembly_69
+md:LAS_Sim.Types.UnitaryAssemblyBatch.assembly_69 rdf:type owl:NamedIndividual ,
+                                                           <http://modelica_example/LAS_Sim/Types/AssemblyData> .
+
+
+###  http://modelica_example/LAS_Sim.Types.UnitaryAssemblyBatch.assembly_75
+md:LAS_Sim.Types.UnitaryAssemblyBatch.assembly_75 rdf:type owl:NamedIndividual ,
+                                                           <http://modelica_example/LAS_Sim/Types/AssemblyData> .
+
+
+###  http://modelica_example/LAS_Sim.Types.UnitaryAssemblyBatch.assembly_79
+md:LAS_Sim.Types.UnitaryAssemblyBatch.assembly_79 rdf:type owl:NamedIndividual ,
+                                                           <http://modelica_example/LAS_Sim/Types/AssemblyData> .
+
+
+###  http://modelica_example/LAS_Sim.Types.UnitaryAssemblyBatch.assembly_8
+md:LAS_Sim.Types.UnitaryAssemblyBatch.assembly_8 rdf:type owl:NamedIndividual ,
+                                                          <http://modelica_example/LAS_Sim/Types/AssemblyData> .
+
+
+###  http://modelica_example/LAS_Sim.Types.UnitaryAssemblyBatch.assembly_93
+md:LAS_Sim.Types.UnitaryAssemblyBatch.assembly_93 rdf:type owl:NamedIndividual ,
+                                                           <http://modelica_example/LAS_Sim/Types/AssemblyData> .
+
+
+###  http://modelica_example/LAS_Sim.Types.UnitaryAssemblyBatch.assembly_97
+md:LAS_Sim.Types.UnitaryAssemblyBatch.assembly_97 rdf:type owl:NamedIndividual ,
+                                                           <http://modelica_example/LAS_Sim/Types/AssemblyData> .
+
+
+###  http://modelica_example/LAS_Sim.Types.UnitaryPartBatch.part_101
+md:LAS_Sim.Types.UnitaryPartBatch.part_101 rdf:type owl:NamedIndividual ,
+                                                    <http://modelica_example/LAS_Sim/Types/PartData> .
+
+
+###  http://modelica_example/LAS_Sim.Types.UnitaryPartBatch.part_115
+md:LAS_Sim.Types.UnitaryPartBatch.part_115 rdf:type owl:NamedIndividual ,
+                                                    <http://modelica_example/LAS_Sim/Types/PartData> .
+
+
+###  http://modelica_example/LAS_Sim.Types.UnitaryPartBatch.part_27
+md:LAS_Sim.Types.UnitaryPartBatch.part_27 rdf:type owl:NamedIndividual ,
+                                                   <http://modelica_example/LAS_Sim/Types/PartData> .
+
+
+###  http://modelica_example/LAS_Sim.Types.UnitaryPartBatch.part_31
+md:LAS_Sim.Types.UnitaryPartBatch.part_31 rdf:type owl:NamedIndividual ,
+                                                   <http://modelica_example/LAS_Sim/Types/PartData> .
+
+
+###  http://modelica_example/LAS_Sim.Types.UnitaryPartBatch.part_44
+md:LAS_Sim.Types.UnitaryPartBatch.part_44 rdf:type owl:NamedIndividual ,
+                                                   <http://modelica_example/LAS_Sim/Types/PartData> .
+
+
+###  http://modelica_example/LAS_Sim.Types.UnitaryPartBatch.part_60
+md:LAS_Sim.Types.UnitaryPartBatch.part_60 rdf:type owl:NamedIndividual ,
+                                                   <http://modelica_example/LAS_Sim/Types/PartData> .
+
+
+###  http://modelica_example/LAS_Sim.Types.UnitaryPartBatch.part_84
+md:LAS_Sim.Types.UnitaryPartBatch.part_84 rdf:type owl:NamedIndividual ,
+                                                   <http://modelica_example/LAS_Sim/Types/PartData> .
+
+
+###  http://modelica_example/LAS_Sim.Types.UnitaryPartBatch.part_88
+md:LAS_Sim.Types.UnitaryPartBatch.part_88 rdf:type owl:NamedIndividual ,
+                                                   <http://modelica_example/LAS_Sim/Types/PartData> .
+
+
+###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi

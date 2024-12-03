@@ -1,0 +1,7 @@
+buildingspy==5.1.0
+modelica_builder==0.6.0
+modparc==0.2.1
+OMPython==3.6.0
+owlready2==0.47
+pyperclip==1.9.0
+rdflib==7.1.1

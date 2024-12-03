@@ -1,0 +1,232 @@
+@prefix :    <http://modelica_example/LAS_Sim/ConceptualClasses/Models/> . 
+@prefix po:    <http://modelica_example/LAS_Sim/ConceptualClasses/Ports/> .
+@prefix da:    <http://modelica_example/LAS_Sim/ConceptualClasses/DataStructures/> .
+@prefix dl:    <https://w3id.org/DOLCE/OWL/DOLCEbasic#> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix sh:    <http://www.w3.org/ns/shacl#> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+
+## TODO: remove long hashtag
+
+:ProcessingResource_sim
+        a            rdfs:Class , sh:NodeShape ;
+        sh:closed    false ;
+        sh:property  [ sh:message   "Any ProcessingResource_sim must have at least two FU Ports!"@en ;
+                       sh:qualifiedMinCount  2 ;
+                       sh:qualifiedValueShape [sh:class po:FU_Port ] ;
+                       sh:path      dl:hasConstantPart
+                     ] .
+
+:ProductSpecif_data  a  rdfs:Class , sh:NodeShape ;
+        sh:closed    false ;
+        sh:property  [ sh:qualifiedMinCount  1 ;
+                       sh:qualifiedValueShape [sh:class :ProcessPlan ] ;
+                       sh:path      dl:hasConstantPart
+                     ] ;
+        sh:property  [ sh:qualifiedMinCount  1 ;
+                       sh:qualifiedValueShape [sh:class :ResourceAllocation ] ;
+                       sh:path      dl:hasConstantPart
+                     ] ;
+        sh:property  [ sh:qualifiedMaxCount  1 ;
+                       sh:message   "Any ProductSpecif_data has exactly 1 NativeProcessPlan !"@en ;
+                       sh:qualifiedMinCount  1 ;
+                       sh:qualifiedValueShape [sh:class :NativeProcessPlan ] ;
+                       sh:path      dl:hasConstantPart
+                     ] ;
+        sh:property  [ sh:qualifiedMinCount  2 ;
+                       sh:qualifiedValueShape [sh:class :StateSpecif ] ;
+                       sh:message   "ProductSpecif_data must have at least 2 StateSpecif!"@en ;
+                       sh:path      dl:hasConstantPart
+                     ] .
+
+:SimulationSystem4MS  a  rdfs:Class , sh:NodeShape ;
+        sh:closed    false ;
+        sh:property  [ sh:message   "Any Simulation System must have at least one Input Generator!"@en ;
+                       sh:qualifiedMinCount  1 ;
+                       sh:qualifiedValueShape [sh:class :InputGenerator ] ;
+                       sh:path      dl:hasConstantPart
+                     ] ;
+        sh:property  [ sh:qualifiedMinCount  1 ;
+                       sh:qualifiedValueShape [sh:class :OutputCollector ] ;
+                       sh:path      dl:hasConstantPart
+                     ] ;
+        sh:property  [ sh:qualifiedMaxCount  1 ;
+                       sh:qualifiedMinCount  1 ;
+                       sh:qualifiedValueShape [sh:class :ManufResource_sim ] ;
+                       sh:path      dl:hasConstantPart
+                     ] ;
+        sh:property  [ sh:qualifiedMaxCount  1 ;
+                       sh:qualifiedMinCount  1 ;
+                       sh:qualifiedValueShape [sh:class :Configurator ] ;
+                       sh:path      dl:hasConstantPart
+                     ] ;
+        sh:property  [ sh:qualifiedMaxCount  1 ;
+                       sh:qualifiedMinCount  1 ;
+                       sh:qualifiedValueShape [sh:class :ResourceManager ] ;
+                       sh:path      dl:hasConstantPart
+                     ] .
+
+po:FU_Port  a          rdfs:Class , sh:NodeShape ;
+        sh:closed    false ;
+        sh:property  [ sh:qualifiedMaxCount  1 ;
+                       sh:message   "For now I consider type restrictions in this way, to be discussed."@en ;
+                       sh:qualifiedMinCount  1 ;
+                       sh:qualifiedValueShape [sh:class da:FlowUnit ] ;
+                       sh:path      dl:hasConstantPart
+                     ] .
+
+#"A TransformResource_sim has at least two FU_Port and has (with two indirecness-level: has/has/has) at least 2 different Product_sim" (it should be almost equivalent to the desired constraint because the presence of a FlowUnit's Product_sim is garanted by a preexisting constraint; while the presence and uniqueness of a FU_port's FlowUnit is imposed by another constraint)
+:TransformResource_sim
+        a            rdfs:Class , sh:NodeShape ;
+        sh:closed    false ;
+        sh:deactivated false ; 
+        sh:property  [ sh:qualifiedMinCount  2 ;
+                       sh:message   "TransformResource_sis must have one FU_port that has (included indirectly) at least 2 Product sim"@en ;
+                       sh:qualifiedValueShape [ sh:class po:FU_Port ] ;
+                       sh:path      dl:hasConstantPart
+                     ] ;
+        sh:property  [ sh:qualifiedMinCount  2 ;
+                       sh:message   "TransformResource_sis must have one FU_port that has (included indirectly) at least 2 Product sim"@en ;
+                       sh:qualifiedValueShape [ sh:class da:Product_sim ] ;
+                       sh:path  (dl:hasConstantPart dl:hasConstantPart dl:hasConstantPart) #TransRes-has->Fu_Port-has->FlowUnit-has->Prod_sim
+                     ] .
+
+## TODO: to be removed
+##:FU_port_with_different_product_sim_shape
+##        a               sh:NodeShape ;
+##        sh:closed       false ;
+##        sh:property     [ sh:qualifiedMinCount  2 ;
+##                          sh:qualifiedValueShape [sh:class da:Product_sim ] ;
+##                          sh:path      [ sh:zeroOrMorePath dl:hasConstantPart ] ;
+##                          sh:message   "Any FU_port must have (included indirectly) at least 2 Product sim"@en #TODO: check
+##                        ] ;
+##        sh:name "FU_port_with_different_product_sim_shape" ;
+##        sh:description "FU_port_with_different_product_sim_shape" .
+
+:ControlResource_sim  a  rdfs:Class , sh:NodeShape ;
+        sh:closed    false ;
+        sh:property  [ sh:qualifiedMinCount  1 ;
+                       sh:qualifiedValueShape [sh:class po:C_port ] ;
+                       sh:path      dl:hasConstantPart
+                     ] .
+
+:ResultsManager  a   rdfs:Class , sh:NodeShape ;
+        sh:closed    false ;
+        sh:property  [ sh:qualifiedMinCount  1 ;
+                       sh:qualifiedValueShape [sh:class po:DataPort ] ;
+                       sh:path      dl:hasConstantPart
+                     ] .
+
+:BehavioralElement_sim
+        a            rdfs:Class , sh:NodeShape ;
+        sh:closed    false ;
+        sh:property  [ sh:qualifiedMaxCount  1 ;
+                       sh:qualifiedValueShape [sh:class :STM_MainBehavior ] ;
+                       sh:path      dl:hasConstantPart ;
+                       sh:message   "A BehavioralElement_sim must have at most 1 STM_MainBehavior"@en
+                     ] ;
+        sh:xone ( 
+            [
+                sh:property [ 
+                    sh:path dl:hasConstantPart ; 
+                    sh:qualifiedValueShape [sh:class :BehavioralElement_sim ] ; 
+                    sh:qualifiedMinCount 1 ] ;
+                sh:property [ 
+                    sh:path dl:hasConstantPart ; 
+                    sh:qualifiedValueShape [sh:class :STM_MainBehavior ] ; 
+                    sh:qualifiedMaxCount 0 ] 
+            ] 
+            [
+                sh:property [ 
+                    sh:path dl:hasConstantPart ; 
+                    sh:qualifiedValueShape [sh:class :BehavioralElement_sim ] ; 
+                    sh:qualifiedMaxCount 0 
+                    ] ;
+                sh:property [ 
+                    sh:path dl:hasConstantPart ; 
+                    sh:qualifiedValueShape [sh:class :STM_MainBehavior ] ; 
+                    sh:qualifiedMinCount 1 ] 
+            ] 
+            ) .
+
+da:Product_sim  a      rdfs:Class , sh:NodeShape ;
+        sh:closed    false ;
+        sh:deactivated true; #TODO: deactivated for now
+        sh:property  [ sh:qualifiedMaxCount  1 ;
+                       sh:message   "Any Product_sim has exactly 1 Product Specif data!"@en ;
+                       sh:qualifiedMinCount  1 ;
+                       sh:qualifiedValueShape [sh:class :ProductSpecif_data ] ;
+                       sh:path      dl:hasConstantPart
+                     ] .
+
+:InputGenerator  a   rdfs:Class , sh:NodeShape ;
+        sh:closed    false ;
+        sh:property  [ sh:qualifiedMinCount  1 ;
+                       sh:qualifiedValueShape [sh:class :C_Port ] ;
+                       sh:path      dl:hasConstantPart
+                     ] ;
+        sh:property  [ sh:qualifiedMinCount  1 ;
+                       sh:qualifiedValueShape [sh:class po:FU_Port ] ;
+                       sh:path      dl:hasConstantPart
+                     ] .
+
+:NativeProcessPlan  a  rdfs:Class , sh:NodeShape ;
+        sh:closed    false ;
+        sh:property  [ sh:qualifiedMinCount  1 ;
+                       sh:qualifiedValueShape [sh:class :ManuProcess ] ;
+                       sh:path      dl:hasConstantPart
+                     ] .
+
+:ManufResource_sim  a  rdfs:Class , sh:NodeShape ;
+        sh:closed    false ;
+        #sh:deactivated true ; #TODO for now deactivated because no ManufResourceSpecif_data in ontology
+        sh:property  [ sh:qualifiedMaxCount  1 ;
+                       sh:qualifiedMinCount  1 ;
+                       sh:qualifiedValueShape [sh:class :ManufResourceSpecif_data ] ;  #TODO sh:node fails if ManufResourceSpecif_data is not a shape (everythiing is validated, even if they are not of the correct class)
+                       sh:path      dl:hasConstantPart ;
+                       sh:message   "ManufResource_sim must have exactly one ManufResourceSpecif_data"
+                     ] .
+
+:LogisticResource_sim
+        a            rdfs:Class , sh:NodeShape ;
+        sh:closed    false ;
+        sh:property  [ sh:qualifiedMaxCount  1 ;
+                       sh:message   "Violated C14!"@en ;
+                       sh:qualifiedValueShape [sh:class da:Product_sim ] ;
+                       sh:path      ( dl:hasConstantPart dl:hasConstantPart )
+                     ] .
+
+da:FlowUnit a rdfs:Class , sh:NodeShape ;
+        sh:closed    false ;
+        sh:message "Each flow unit must have at least 1 Product_sim!"@en ;
+        sh:property  sh:hasOneProduct_sim . 
+
+sh:hasOneProduct_sim a sh:PropertyShape;
+  sh:qualifiedMinCount  1 ;
+  sh:message "Each flow unit must have at least 1 Product_sim!"@en ;
+  sh:qualifiedValueShape sh:hasProductSim ;
+  sh:path dl:hasConstantPart .
+
+sh:hasProductSim a sh:propertyShape; sh:class da:Product_sim .
+
+:TransformativeManufResourceSpecif_data
+        a            rdfs:Class , sh:NodeShape ;
+        sh:closed    false ;
+        sh:property  [ sh:qualifiedMinCount  1 ;
+                       sh:qualifiedValueShape [sh:class :ConfigSpecif ] ;
+                       sh:path      dl:hasConstantPart
+                     ] .
+
+:OutputCollectorGenerator
+        a            rdfs:Class , sh:NodeShape ;
+        sh:closed    false ;
+        sh:property  [ sh:qualifiedMinCount  1 ;
+                       sh:qualifiedValueShape [sh:class :C_Port ] ;
+                       sh:path      dl:hasConstantPart
+                     ] ;
+        sh:property  [ sh:qualifiedMinCount  1 ;
+                       sh:qualifiedValueShape [sh:class po:FU_Port ] ;
+                       sh:path      dl:hasConstantPart
+                     ] .
