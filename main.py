@@ -61,6 +61,11 @@ depended_libraries = [os.path.join(ABSOLUTE_PATH_OF_PROJECT,"modelica_files",f"{
 ontology_from_library_abs_path = os.path.join(ABSOLUTE_PATH_OF_PROJECT,"ontologies",f"ontology_generated_from_{LIBRARY_NAME.replace(".","_")}.owl")
 user_model_plus_library_ontology_abs_path = os.path.join(ABSOLUTE_PATH_OF_PROJECT,"ontologies",f"{USER_MODEL_QUALIFIED_PATH.replace(".","_")}_plus_{LIBRARY_NAME.replace(".","_")}.owl")
 
+if sys.platform.startswith("win"):
+    library_abs_path = library_abs_path.replace("\\","\\\\")
+    simplified_library_abs_path = simplified_library_abs_path.replace("\\","\\\\")
+    depended_libraries = [depended_library.replace("\\","\\\\") for depended_library in depended_libraries]
+
 # This will remove annotations and save a corresponding file
 open(simplified_library_abs_path, "w", encoding="utf-8").write(clean_modelica_code(open(library_abs_path, encoding="utf-8").read()))
 
